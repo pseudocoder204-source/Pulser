@@ -1,0 +1,14 @@
+[Unit]
+Description=Run mark2 ClamAV background scan periodically
+
+[Timer]
+# Fires daily. clamav_parser.py's own manifest/interval logic (not this timer)
+# decides FULL vs. INCREMENTAL per run — this just needs to fire often enough
+# that incremental scans actually happen in between the 30-day full-scan floor
+# (_FULL_SCAN_INTERVAL_DAYS in clamav_parser.py).
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=30m
+
+[Install]
+WantedBy=timers.target

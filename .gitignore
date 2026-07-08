@@ -1,0 +1,37 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+
+# ---- Local editor / tool state ----
+.claude/settings.local.json
+.vscode/
+.idea/
+
+# ---- Generated artifacts ----
+graph.png
+
+# ---- Databases (never commit) ----
+# vulnerability_cache.db is 3.2 GB and hosted externally (see CONTRIBUTING_SCAN_DATA.md).
+# trainset.db + clamav_manifest.db are per-user local state, created on first run.
+*.db
+*.db.gz
+
+# ---- Per-user scan outputs / logs (contain hostnames, file paths) ----
+contrib_*.json
+report_training_log.jsonl
+clamav_*.json
+clamav_*.log
+clamav_full_scan_log
+*.log
+
+# ---- Internal planning / scratch notes (not for the public repo) ----
+futurePlan.txt
+FinetuneGuide.txt
+GuideToWindowsCompatibility.txt
+commands.txt

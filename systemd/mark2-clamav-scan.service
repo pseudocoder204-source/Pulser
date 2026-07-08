@@ -1,0 +1,16 @@
+[Unit]
+Description=mark2 ClamAV background malware scan
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+# Scanning bind-mounted host paths like /root and /var/www generally requires
+# root read access. If your threat model doesn't need those paths, restrict
+# CLAMAV_SCAN_PATHS (passed through -e in mark2-clamav-scan.sh) to
+# user-readable directories only and drop User=root below.
+User=root
+ExecStart=/usr/local/bin/mark2-clamav-scan.sh
+# A full scan can legitimately run for hours (see CLAUDE.md); don't let
+# systemd's default timeout kill it mid-scan.
+TimeoutStartSec=6h

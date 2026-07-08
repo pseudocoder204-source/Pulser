@@ -1,0 +1,14 @@
+# mark2 dependencies
+langchain-core
+langchain-ollama
+langchain-anthropic
+langgraph
+
+# typing_extensions provides TypedDict for the subgraph state classes. It's
+# pulled in transitively by langgraph, but listed explicitly since the
+# *_subgraph.py modules import it directly.
+typing_extensions
+
+# anthropic is pulled in transitively by langchain-anthropic, but listed
+# explicitly since ChatAnthropic (agent.py) rides on the same SDK.
+anthropic
