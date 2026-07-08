@@ -20,7 +20,7 @@ You need **the whole repo** (not just the one `.py` file — it imports the rest
 pipeline), Python 3.10+, and the scanner tools for your OS.
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/pseudocoder204-source/mark2
 cd mark2
 pip install -r requirements.txt
 ```
