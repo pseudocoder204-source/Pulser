@@ -1,18 +1,23 @@
-mark2 — a multi-scanner home-network security pipeline
+mark2 License v1.0 (based on GNU GPLv3, with an added non-commercial term)
 Copyright (C) 2026  Aditya Soni
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+NOTE ON THIS LICENSE: this project's terms are the GNU General Public
+License v3 (reproduced in full below) PLUS one additional term, "NO
+COMMERCIAL RESALE," appended at the end of this file. GPLv3 section 7 only
+permits a fixed, narrow list of additional restrictions (extra attribution
+requirements, trademark carve-outs, and similar) — a blanket ban on selling
+does not fall on that list. That means this is technically **not** the
+OSI-approved GNU GPLv3, even though it reuses GPLv3's text and copyleft
+mechanics for everything else (you can use, modify, and contribute to this
+code, and any redistributed copy or derivative must stay under these same
+terms and keep its source available). Call it "the mark2 License," not
+"GPLv3," to avoid confusing contributors or downstream users about what
+they're getting.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+This program is free software: you can redistribute it and/or modify it
+under the terms below. This program is distributed in the hope that it
+will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 ---
 
@@ -690,3 +695,20 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
+---
+
+ADDITIONAL TERM: NO COMMERCIAL RESALE
+
+This additional term is added under the spirit of, but outside the scope
+of, GPLv3 section 7 (see the note at the top of this file for why that
+distinction matters). It applies on top of everything above.
+
+You may not sell copies of the Program or of any work based on the
+Program, and you may not charge a fee to provide the Program (or a
+modified version of it) as a hosted, managed, or "as a service" offering.
+This restriction does not prohibit charging for genuinely separate
+services performed alongside the software — e.g. paid support, consulting,
+or custom integration work — as long as the Program itself, and access to
+it, remain free of charge. Any commercial use beyond this requires prior
+written permission from the copyright holder.

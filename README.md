@@ -92,6 +92,11 @@ and consent before scanning.
 
 ## License
 
-[GNU GPLv3](LICENSE). You're free to use, modify, and contribute to this
-code — any redistributed copy or derivative work must stay under GPLv3 and
-keep its source available.
+The [mark2 License](LICENSE) — based on GNU GPLv3, plus one added term:
+no commercial resale or paid hosting of this software (see the LICENSE
+file for the full wording; because of that addition it isn't the
+OSI-approved GPLv3 itself, though it works the same way otherwise). Free
+to use, modify, and contribute; any redistributed copy or derivative must
+stay under the same terms and keep its source available.
+
+Contributions are accepted under the terms of our [CLA](CLA.md).
