@@ -81,8 +81,7 @@ without it they'll show up as `undetermined` instead of a real result.
 
 *nmap:* install [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
 if you don't already have it (it ships by default on Windows 10 2004+/Windows 11 — check
-with `winget --version`; if missing, install "App Installer" from the Microsoft Store),
-then:
+with `winget --version`; then:
 ```powershell
 winget install -e --id Insecure.Nmap
 ```
