@@ -1,0 +1,22 @@
+Copyright (c) 2026 Aditya Soni. All rights reserved.
+
+This repository and its contents (including but not limited to source code,
+documentation, and configuration) are made publicly viewable for transparency
+and for the purpose of collecting scan-data contributions as described in
+CONTRIBUTING_SCAN_DATA.md.
+
+No license is granted to any person to copy, modify, merge, publish,
+distribute, sublicense, sell, or otherwise use this software or any portion
+of it, in whole or in part, for any purpose, except:
+
+  1. Viewing the source code on GitHub.
+  2. Cloning and running the code locally, unmodified, for the sole purpose
+     of contributing scan data as described in CONTRIBUTING_SCAN_DATA.md.
+
+Any other use requires prior written permission from the copyright holder.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE
+USE OF THE SOFTWARE.

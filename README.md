@@ -92,4 +92,8 @@ and consent before scanning.
 
 ## License
 
-_No license has been chosen yet — see the note in the repo before reusing this code._
+All rights reserved — see [LICENSE](LICENSE). This code is public for
+transparency and to support the scan-data contribution flow above; it is
+**not** open source. Cloning/running it locally to contribute a scan is fine;
+copying, redistributing, or reusing the code otherwise is not permitted
+without written permission.
