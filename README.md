@@ -92,4 +92,4 @@ and consent before scanning.
 
 ## License
 
-[GNU GPLv2](LICENSE).
+No license has been chosen yet.
