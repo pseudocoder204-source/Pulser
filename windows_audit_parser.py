@@ -149,7 +149,22 @@ $r.au_option = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersio
 $lu = (Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 1).InstalledOn
 $r.days_since_update = if ($lu) { [int]((Get-Date) - $lu).TotalDays } else { $null }
 $r.guest_enabled = (Get-LocalUser -Name 'Guest').Enabled
-$r.exec_policy = (Get-ExecutionPolicy).ToString()
+# Skip Process scope here: this script was itself launched with -ExecutionPolicy Bypass
+# (so the outer PowerShell.exe call always succeeds), which would make plain
+# Get-ExecutionPolicy report 'Bypass' on every machine regardless of the user's real
+# policy. Read the effective policy from the scopes that actually reflect user/machine
+# config instead.
+$policyMap = @{}
+foreach ($p in (Get-ExecutionPolicy -List)) { $policyMap[$p.Scope.ToString()] = $p.ExecutionPolicy.ToString() }
+$effective = 'Undefined'
+foreach ($scope in @('MachinePolicy', 'UserPolicy', 'CurrentUser', 'LocalMachine')) {
+    if ($policyMap.ContainsKey($scope) -and $policyMap[$scope] -ne 'Undefined') {
+        $effective = $policyMap[$scope]
+        break
+    }
+}
+if ($effective -eq 'Undefined') { $effective = 'Restricted' }
+$r.exec_policy = $effective
 $r | ConvertTo-Json -Compress
 """
 

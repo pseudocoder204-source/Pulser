@@ -19,6 +19,10 @@ It takes ~10–15 minutes plus one scan.
 You need **the whole repo** (not just the one `.py` file — it imports the rest of the
 pipeline), Python 3.10+, and the scanner tools for your OS.
 
+> **Windows users:** run these (and every other command in this guide) in **PowerShell**,
+> opened as **Administrator** — see the Windows note under "Install the scanners" below
+> for why.
+
 ```bash
 git clone https://github.com/pseudocoder204-source/mark2.git
 cd mark2
@@ -28,13 +32,23 @@ pip install -r requirements.txt
 ### Download the CVE cache (recommended)
 
 The local CVE cache (`vulnerability_cache.db`) is **too large to ship in the repo** (~3.2 GB
-uncompressed), so it's hosted separately. Download it once into the repo root before
-scanning — it lets the CVE lookup start from a full local cache instead of a slow
-first-time download from NVD:
+uncompressed), so it's hosted separately as a Release asset. Download
+`vulnerability_cache.db.gz` (~126 MB) from the project's
+[Releases page](https://github.com/pseudocoder204-source/mark2/releases) (tag `v0.1.0-data`)
+and move it into the **repo root** (i.e. next to `contribute_real_scan.py`) — it doesn't
+land there automatically, so make sure it's not still sitting in your Downloads folder.
+Then decompress it once — it lets the CVE lookup start from a full local cache instead of
+a slow first-time download from NVD:
 
+**Linux/macOS:**
 ```bash
-# Download the compressed cache (~126 MB) from the project's Releases page, then:
 gunzip -c vulnerability_cache.db.gz > vulnerability_cache.db
+```
+
+**Windows:** there's no `gunzip` by default, so use Python instead (from the repo root,
+in PowerShell):
+```powershell
+python -c "import gzip, shutil; shutil.copyfileobj(gzip.open('vulnerability_cache.db.gz', 'rb'), open('vulnerability_cache.db', 'wb'))"
 ```
 
 > Skipping this still works — the pipeline will create an empty cache and sync ~30 days of
@@ -56,16 +70,53 @@ sudo apt install nmap clamav          # nmap + ClamAV (ClamAV only needed with -
 brew install nmap trivy nuclei lynis clamav
 ```
 
-**Windows:** ⚠️ The Windows path works differently and is **not yet validated on a real
-Windows machine** — please coordinate with the maintainer before contributing from
-Windows. When it is ready you'll need `nmap` (plus the **Npcap** driver) and `nuclei`;
-the host audit and malware check use Windows Defender + PowerShell, which are already
-built in (Trivy, Lynis, and ClamAV are *not* used on Windows).
+**Windows:** ⚠️ The Windows path works differently from Linux/macOS — you'll need `nmap`
+(plus the **Npcap** driver) and `nuclei`; the host audit and malware check use Windows
+Defender + PowerShell, which are already built in (Trivy, Lynis, and ClamAV are *not*
+used on Windows). Run **every command below (installation and the scan itself) in
+PowerShell**, not Command Prompt/`cmd.exe` — and open it as **Administrator** (right-click
+the Start menu → "Terminal (Admin)" or "Windows PowerShell (Admin)"). Several audit
+checks (Defender status, SMBv1, BitLocker) can only be read with admin rights, and
+without it they'll show up as `undetermined` instead of a real result.
+
+*nmap:* install [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
+if you don't already have it (it ships by default on Windows 10 2004+/Windows 11 — check
+with `winget --version`; if missing, install "App Installer" from the Microsoft Store),
+then:
+```powershell
+winget install -e --id Insecure.Nmap
+```
+This also installs Npcap, which nmap needs for LAN scans.
+
+*nuclei:* `winget` doesn't have a good nuclei package, so install it manually into a
+`bin` folder next to `bin_resolver.py` (the repo root) — `bin_resolver.py` checks that
+folder before falling back to `PATH`:
+```powershell
+# 1. From the repo root, create the bin folder
+mkdir bin
+
+# 2. Fetch the latest Windows release zip's download URL and download it
+$repo = "projectdiscovery/nuclei"
+$url = (Invoke-RestMethod -Uri "https://api.github.com/repos/$repo/releases/latest").assets |
+       Where-Object { $_.name -like "*_windows_amd64.zip" } |
+       Select-Object -ExpandProperty browser_download_url
+Invoke-WebRequest -Uri $url -OutFile "nuclei.zip"
+
+# 3. Extract nuclei.exe into bin\, then clean up
+Expand-Archive -Path "nuclei.zip" -DestinationPath "temp_nuclei"
+Move-Item -Path "temp_nuclei\nuclei.exe" -Destination "bin\"
+Remove-Item -Recurse -Force "temp_nuclei", "nuclei.zip"
+```
+Verify it landed in the right place:
+```powershell
+.\bin\nuclei.exe -version
+```
 
 > The script runs a **preflight check** and prints which scanners it found. Missing ones
 > are skipped and simply won't appear in your contribution — so install them all for the
 > most useful data. Point the script at a binary that isn't on your `PATH` with an env var,
-> e.g. `NUCLEI_BINARY=/opt/nuclei/nuclei`, or drop binaries in a `./bin` folder.
+> e.g. `NUCLEI_BINARY=C:\tools\nuclei.exe`, or drop binaries in a `bin` folder next to
+> `bin_resolver.py` (as above) — note it must be named `bin`, not `.bin`.
 
 ---
 
@@ -76,6 +127,9 @@ Scan **your own machine** (the default target `127.0.0.1`):
 ```bash
 python3 contribute_real_scan.py
 ```
+
+> **Windows:** run this from the same elevated PowerShell window as before (`python` not
+> `python3`).
 
 You'll see the scanner check, then a summary of exactly what will be recorded, then a
 consent prompt. Type `I consent` to proceed.
