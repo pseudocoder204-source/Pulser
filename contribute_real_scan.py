@@ -263,6 +263,15 @@ def main() -> None:
     ordered_facts = result["ordered_facts"]
     fhash = result["hash"]
 
+    hist = result.get("tier_histogram") or {}
+    print(f"\n[contribute] scan complete — shape={result['shape']} "
+          f"tiers={{critical:{hist.get('critical', 0)}, high:{hist.get('high', 0)}, "
+          f"medium:{hist.get('medium', 0)}, low:{hist.get('low', 0)}}} "
+          f"({len(ordered_facts)} finding(s) total)")
+    for f in ordered_facts:
+        print(f"  [{f.get('severity', '?'):<8}] {f.get('source', '?'):<10} {f.get('affected', '')}")
+    print()
+
     db_conn = _init_trainset_db(args.db)
     if fhash in _existing_db_hashes(db_conn):
         print(f"[contribute] identical scan already present in {args.db} (hash {fhash[:12]}) "
