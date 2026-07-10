@@ -113,19 +113,15 @@ and consent before scanning.
 | Aditya Soni | Lead Developer & Architect |
 | Andrew Macedo | Community Outreach |
 
-## Licensing and Attributions
+## License & attributions
 
-mark2 is licensed under the **GNU General Public License, version 2** (see [`LICENSE`](LICENSE)).
+mark2 is licensed under the **GNU General Public License v2** (see [`LICENSE`](LICENSE)).
 
-mark2 is an orchestration layer. **It ships no scanner binaries and redistributes no
-third-party code.** You install the scanners yourself; mark2 invokes each as a separate
-process via its documented command-line interface and reads only that process's output.
-It does not contain, link against, or modify any scanner's source. All five remain the
-copyright of their respective authors, under their own licenses, and all credit for the
-actual scanning work belongs to them.
-
-`LYNIS_TEST_CATALOG` in `lynis_subgraph.py` is original work by this project's author. It
-is keyed by Lynis test ID but contains no text from Lynis.
+mark2 is just an orchestration layer: **it ships no scanner binaries.** You install the
+scanners yourself, and mark2 runs each as a separate program and reads its output — it never
+contains, links against, or modifies their code. So each scanner stays under its own license,
+and using mark2 asks nothing of you beyond installing the tools. Credit for the actual scanning
+belongs to their authors:
 
 | Tool | Author / Maintainer | License | Role in mark2 |
 |---|---|---|---|
@@ -135,78 +131,14 @@ is keyed by Lynis test ID but contains no text from Lynis.
 | [Trivy](https://trivy.dev) | Aqua Security | [Apache-2.0](https://github.com/aquasecurity/trivy/blob/main/LICENSE) | Filesystem package vulnerability scanning |
 | [Nuclei](https://projectdiscovery.io) | ProjectDiscovery, Inc. | [MIT](https://github.com/projectdiscovery/nuclei/blob/main/LICENSE.md) | Template-based web/network vulnerability checks |
 
-Nuclei templates are distributed separately by ProjectDiscovery under the
-[MIT license](https://github.com/projectdiscovery/nuclei-templates/blob/main/LICENSE.md)
-and are fetched at build/run time via `nuclei -update-templates`.
+Each tool's full license text is kept in [`THIRD_PARTY_LICENSES/`](THIRD_PARTY_LICENSES/).
+CVE data comes from the [NVD](https://nvd.nist.gov/), which is public domain (NIST does not
+endorse this project).
 
-CVE data is retrieved from the [NVD](https://nvd.nist.gov/) (U.S. National Institute of
-Standards and Technology). NVD data is in the public domain; NIST does not endorse this
-project.
+Two things worth knowing: mark2 does **not** bundle [Nmap](https://nmap.org/download.html)
+(install it yourself — a deliberate licensing choice), and you should only scan systems you own
+or are authorized to test.
 
-### Source availability (Docker image only)
-
-mark2 is intended to run **natively** on the host — that is the only configuration in
-which the scanners can see the real network and filesystem. Run that way, mark2
-redistributes nothing, and no GPL source-offer obligation arises: you installed the
-scanners, from their own maintainers.
-
-The [`Dockerfile`](Dockerfile) in this repository is a development and testing convenience.
-It installs unmodified upstream builds of ClamAV, Lynis, Trivy, and Nuclei (never Nmap, by
-default). **If you publish an image built from it**, the GPL requires you to offer the
-corresponding source for the GPL-licensed components, available upstream:
-
-- ClamAV (GPL-2.0) — https://github.com/Cisco-Talos/clamav
-- Lynis (GPL-3.0) — https://github.com/CISOfy/lynis
-
-mark2 does not patch or fork either project.
-
-### A note on Nmap, redistribution, and commercial use
-
-Nmap is **not** distributed under a standard OSI-approved license. The
-[NPSL](https://nmap.org/npsl/) is a modified GPLv2 whose definition of "derivative work"
-is deliberately broader than the GPL's: it covers software that "is designed specifically
-to execute Covered Software and parse the results," and software that redistributes Nmap
-or its data files (`nmap-os-db`, `nmap-service-probes`, NSE scripts).
-
-The NPSL also states that Nmap Software LLC "does not purport to control ... any software
-which does not require the rights granted herein," and specifically names software that
-executes an Nmap "that end user may have already installed on their system" and parses its
-results. **The distinction that matters is therefore redistribution, not invocation.**
-
-- **Running mark2 against your own systems, with Nmap installed by you, requires nothing
-  from Nmap Software LLC.** This is how mark2 is meant to be run.
-- **Redistributing Nmap** — shipping the binary inside an installer or image — exercises
-  rights the NPSL grants, and brings the redistributed work under the NPSL's terms.
-
-**mark2 therefore does not bundle Nmap.** You install Nmap yourself, and mark2 shells out
-to it (`bin_resolver.resolve()` checks `$NMAP_BINARY`, then `$PATH`). The `Dockerfile`
-ships no Nmap by default; `--build-arg INSTALL_NMAP=true` bakes it in for local use, but an
-image built that way must not be published without an
-[Nmap OEM license](https://nmap.org/oem/).
-
-**If you ship mark2 (or a fork) inside a commercial or proprietary product *with the Nmap
-binary bundled* — for example a Windows installer that provisions Nmap for the user — you
-will likely need an Nmap OEM license** (`licensing@nmap.com`). Requiring the user to
-install Nmap themselves avoids this entirely.
-
-Two further constraints, relevant on Windows and in hosted deployments:
-
-- **Npcap** (which Nmap needs for LAN scans on Windows) is **not open source and may not be
-  redistributed** without separate written permission from Nmap Software LLC — independent
-  of any Nmap OEM license (NPSL §10). Npcap's own license recommends that projects "ask
-  your users to download and install Npcap themselves," which is what mark2 does. Note that
-  **the free edition of Npcap is limited to roughly five systems**; organizations deploying
-  mark2 more widely than that need an
-  [Npcap OEM Internal-Use License](https://npcap.com/oem/internal.html). That obligation
-  falls on the deploying organization, not on mark2.
-- **Hosting mark2 as a service** that runs Nmap scans on behalf of users triggers NPSL §6
-  ("External Deployment"): the system and its documentation must prominently state that it
-  uses the Nmap Security Scanner, with a link to https://nmap.org/.
-
-Nmap is a trademark of Nmap Software LLC. mark2 is not affiliated with, endorsed by, or
-sponsored by Nmap Software LLC, Cisco Systems, CISOfy, Aqua Security, or ProjectDiscovery.
-
-### Scope of use
-
-mark2 runs active network and host scans. Only scan systems you own or have explicit
-written authorization to test. Unauthorized scanning may be illegal in your jurisdiction.
+Packaging mark2 commercially, hosting it as a service, or bundling any scanner binary? The full
+license analysis — NPSL/OEM, Docker source-offer, Npcap, hosted-deployment notices — lives in
+[LICENSING.md](LICENSING.md).
