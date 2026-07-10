@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """windows_defender_parser.py — malware source for Windows, in place of ClamAV.
 
 On Windows the malware stage does not ship/run ClamAV: every Windows box already runs

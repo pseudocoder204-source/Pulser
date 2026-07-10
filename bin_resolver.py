@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """bin_resolver.py — locate external scanner binaries across platforms + elevation check.
 
 Mark2 shells out to nmap/nuclei/trivy/clamscan/lynis by bare name, relying on $PATH.

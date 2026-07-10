@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-2.0-only
 """
 merge_real_scans.py — maintainer-side ingestion of contributor files produced by
 contribute_real_scan.py into the central trainset.db (FinetuneGuide.txt Step 3a).

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-2.0-only
 """
 collect_inputs.py — Step-3 training-input collector for the report LoRA.
 

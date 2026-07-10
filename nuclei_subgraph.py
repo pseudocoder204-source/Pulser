@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """
 nuclei_subgraph.py — LangGraph subgraph edition of the Nuclei web scanner pipeline.
 

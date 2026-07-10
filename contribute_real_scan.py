@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-2.0-only
 """
 contribute_real_scan.py — plug-n-play real-scan contributor for the report LoRA
 training set (FinetuneGuide.txt Step 3a: ~30 real anchor rows).

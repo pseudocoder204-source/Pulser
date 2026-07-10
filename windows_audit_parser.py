@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """windows_audit_parser.py — Windows host-hardening audit, Lynis's Windows counterpart.
 
 Lynis has no Windows port (it audits the Unix kernel/service config), so on Windows the

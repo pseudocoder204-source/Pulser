@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """Fail loudly if agent._REPORT_SYSTEM_PROMPT has drifted from the locked snapshot.
 
 FinetuneGuide.txt Step 1: every training example must be collected against the

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """
 Tool registry for the mark2 security agent (LangChain edition).
 

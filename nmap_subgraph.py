@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """
 nmap_subgraph.py — LangGraph subgraph edition of the nmap pipeline.
 

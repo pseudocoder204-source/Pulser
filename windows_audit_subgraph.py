@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """windows_audit_subgraph.py — LangGraph subgraph for the Windows host-hardening audit.
 
 The Windows counterpart to lynis_subgraph.py. Same role in the pipeline (the host_audit

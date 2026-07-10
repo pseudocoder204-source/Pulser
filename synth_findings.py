@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """Synthetic training-data generator for the report LoRA (see FinetuneGuide.txt PHASE 1B/1C).
 
 Replaces SecGen: instead of launching vulnerable VMs, this hand-assembles a worker-output

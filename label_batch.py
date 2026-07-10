@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0-only
 """One-off batch-labeling helper for trainset.db rows (FinetuneGuide.txt Step 4/5).
 
 Not part of the shipped pipeline — a scratch script used interactively through Claude

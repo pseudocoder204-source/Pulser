@@ -29,9 +29,20 @@ python3 nuclei_subgraph.py [target]
 pip install -r requirements.txt
 ```
 
-**Docker:**
+**Docker** (development/testing convenience only — the product runs natively per-OS; see
+"Cross-platform (Windows) support" below):
+
+**Nmap is deliberately not installed in the image.** Redistributing the Nmap binary
+triggers the NPSL's copyleft/OEM terms, while *executing* a user-installed Nmap and parsing
+its output is expressly carved out by that license. `bin_resolver.resolve("nmap")` finds a
+host-provided binary via `$NMAP_BINARY` → `$MARK2_BIN_DIR` → `$PATH`. Without it,
+`scan_network` / `discover_hosts` / `scan_iot_defaults` return `{"status": "unavailable"}`
+and the rest of the spine runs normally. `--build-arg INSTALL_NMAP=true` bakes Nmap in for
+local use; such an image must never be published. See README.md § Licensing and Attributions.
+
 ```bash
-docker build -t mark2 .
+docker build -t mark2 .                              # no Nmap; safe to share
+docker build --build-arg INSTALL_NMAP=true -t mark2 . # with Nmap; local use only
 docker run --rm -e TARGET=192.168.1.1 mark2
 
 # With NVD API key (higher rate limits):
@@ -296,7 +307,8 @@ The pipeline runs natively per-OS via runtime `platform.system()` dispatch — *
 - `vulnerability_cache.db` is the local SQLite cache. Delete it to force a full re-sync from NVD.
 - `TARGET` and `NVD_API_KEY` are read from environment variables (`os.environ`). Never hardcode them.
 - Without an NVD API key, the NVD rate-limits to ~5 requests/30s; the code sleeps 6.5s between requests (1.5s with a key).
-- The `-sV` version detection scan requires `nmap-scripts` (installed via `apk add nmap-scripts`). Without it, nmap fails with `could not locate nse_main.lua`. `IOT_DEFAULT_CREDS`'s NSE script names (`http-default-accounts`, `upnp-info`, `snmp-info`) depend on the same package.
+- Nmap is **not** bundled by mark2 (NPSL redistribution — see README.md § Licensing and Attributions). It must be installed by the user and found on `$PATH` or via `$NMAP_BINARY`. A missing Nmap is not fatal: `run_nmap` raises `RuntimeError` (`nmap_parser.py`), which `tools.py` converts to `{"status": "unavailable"}` for the three Nmap-backed tools.
+- The `-sV` version detection scan requires nmap's NSE data files (the `nmap-scripts` package on Alpine, bundled with nmap on most other distros). Without them, nmap fails with `could not locate nse_main.lua`. `IOT_DEFAULT_CREDS`'s NSE script names (`http-default-accounts`, `upnp-info`, `snmp-info`) depend on the same data files.
 - `run_nmap` enforces a hard subprocess timeout (`DEFAULT_NMAP_TIMEOUT` = 300s) — a hung nmap process previously had no bound and could hang the whole pipeline. Pass `timeout=` to override per call.
 - `sync_local_db_with_nvd` is incremental: it records the last sync timestamp in `sync_metadata` and only fetches CVEs modified since then. On first run it pulls 30 days of history.
 - `enrich_and_condense_findings` never skips a finding even if no CVEs match — host inventory data (port, version, service) is always preserved in the output.

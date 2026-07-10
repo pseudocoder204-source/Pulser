@@ -1,9 +1,37 @@
 FROM alpine:latest
 
-# nmap + scripts for network scanning; curl needed to install trivy/nuclei; python3 + pip for agents;
+# curl needed to install trivy/nuclei; python3 + pip for agents;
 # clamav for malware scanning (clamscan + freshclam only — clamav_parser.py deliberately never
 # starts clamd, see CLAUDE.md, so the daemon package is not installed)
-RUN apk add --no-cache nmap nmap-scripts bash python3 py3-pip curl unzip clamav
+RUN apk add --no-cache bash python3 py3-pip curl unzip clamav
+
+# ── Nmap is deliberately NOT bundled ──────────────────────────────────────────
+# Nmap is licensed under the NPSL (https://nmap.org/npsl/), not a standard open
+# source license. Redistributing the Nmap binary exercises rights the NPSL grants,
+# which drags the redistributed work under the NPSL's terms and — for a commercial
+# or proprietary product — requires an Nmap OEM license.
+#
+# Merely *executing* an Nmap that the end user already installed, and parsing its
+# output, is expressly carved out by the NPSL ("Licensor does not purport to
+# control ... any software which does not require the rights granted herein").
+# So mark2 shells out to a host-provided Nmap and ships none of its own.
+# nmap_parser.py finds it via bin_resolver.resolve() → $NMAP_BINARY, then $PATH.
+# See README.md § Licensing and Attributions.
+#
+# For LOCAL use only, you may build an image with Nmap baked in:
+#     docker build --build-arg INSTALL_NMAP=true -t mark2 .
+#
+# Building such an image for your own use is not redistribution. PUBLISHING it —
+# to Docker Hub, any registry, or any third party — IS redistribution, and needs
+# an Nmap OEM license (licensing@nmap.com). The default is `false` so that the
+# image this Dockerfile produces is safe to share.
+ARG INSTALL_NMAP=false
+RUN if [ "$INSTALL_NMAP" = "true" ]; then \
+        echo "[mark2] Bundling Nmap — this image MUST NOT be redistributed (NPSL)." && \
+        apk add --no-cache nmap nmap-scripts; \
+    else \
+        echo "[mark2] Nmap not bundled. Mount or install it at runtime; see README."; \
+    fi
 
 # Seed virus definitions at build time so the first container run isn't stuck downloading
 # ~200MB+ before it can scan anything. Best-effort: some sandboxed build environments block
