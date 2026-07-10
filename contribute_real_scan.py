@@ -187,6 +187,17 @@ anything not already listed above.
 
 This row is added to trainset.db as UNLABELED training input (source='real',
 status='pending') — no report text is generated or sent anywhere.
+
+DATA LICENSE. By submitting this scan summary you grant the mark2 project and
+its maintainers a perpetual, irrevocable, worldwide, royalty-free,
+non-exclusive license to use, reproduce, modify, publish, and distribute the
+submitted data for any purpose, including training machine-learning models and
+incorporating those models into commercial products. You confirm that you own
+or control the systems scanned and have the right to grant this license. The
+data is used as described above; no additional personal information is
+collected.
+
+Passing --yes constitutes acceptance of the data license above.
 """.strip())
     print("=" * 78)
 
@@ -194,7 +205,8 @@ status='pending') — no report text is generated or sent anywhere.
 def _confirm(auto_yes: bool) -> None:
     if auto_yes:
         return
-    print("\nType exactly:  I consent   (anything else cancels)")
+    print("\nBy typing 'I consent' you accept the DATA LICENSE shown above.")
+    print("Type exactly:  I consent   (anything else cancels)")
     try:
         answer = input("> ").strip()
     except (EOFError, KeyboardInterrupt):

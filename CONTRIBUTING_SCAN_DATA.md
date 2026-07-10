@@ -14,6 +14,25 @@ It takes ~10–15 minutes plus one scan.
 
 ---
 
+## Data license
+
+**By submitting this scan summary you grant the mark2 project and its maintainers a
+perpetual, irrevocable, worldwide, royalty-free, non-exclusive license to use, reproduce,
+modify, publish, and distribute the submitted data for any purpose, including training
+machine-learning models and incorporating those models into commercial products. You
+confirm that you own or control the systems scanned and have the right to grant this
+license. The data is used as described above; no additional personal information is
+collected.**
+
+The script prints this same text before it scans anything, and requires you to type
+`I consent`. **Passing `--yes` skips that prompt and constitutes acceptance of this
+license.** The Google Form asks you to accept it again at the point of submission.
+
+If you are not willing to grant this license, please do not submit a scan. You are of
+course still welcome to run mark2 on your own machines.
+
+---
+
 ## 1. Requirements
 
 You need **the whole repo** (not just the one `.py` file — it imports the rest of the
@@ -147,6 +166,9 @@ host requires that owner's explicit permission and the `--i-have-permission` fla
 ---
 
 ## 3. Send back the result
+
+> Submitting the file grants the project the rights described under
+> [Data license](#data-license) above. The Google Form asks you to confirm this.
 
 When it finishes it prints something like:
 
