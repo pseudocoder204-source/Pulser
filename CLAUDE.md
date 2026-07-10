@@ -129,7 +129,7 @@ Graph: `scan → parse → enrich → build → END`
 State inputs: `report_file` (optional override; defaults to `/tmp/lynis-report.dat`)
 State outputs: `raw_report`, `parsed_report`, `payload`, `error`
 
-No target needed — Lynis always audits the local host. The extra `enrich` node is unique to this subgraph: it cross-references each `test_id` against the built-in `LYNIS_TEST_CATALOG` (sourced from cisofy.com/lynis/controls/ and the Lynis GitHub test files) to fill in the human-readable description, remediation steps, and category tag that the machine-readable report file omits. Falls back to prefix-based category inference (e.g., `SSH-7408` → "SSH") for test IDs not yet in the catalog.
+No target needed — Lynis always audits the local host. The extra `enrich` node is unique to this subgraph: it cross-references each `test_id` against the built-in `LYNIS_TEST_CATALOG` to fill in the human-readable description, remediation steps, and category tag that the machine-readable report file omits. That catalog is **original text written for this project**, not copied from Lynis (which is GPL-3.0, incompatible with this project's GPL-2.0-only) — but **71 of its 80 descriptions do not match what the upstream test ID actually checks**, and 2 IDs don't exist upstream. See the WARNING comment above the catalog; fixing it is open work. Falls back to prefix-based category inference (e.g., `SSH-7408` → "SSH") for test IDs not yet in the catalog.
 
 #### `clamav_subgraph.py`
 

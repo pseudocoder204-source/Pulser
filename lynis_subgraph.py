@@ -9,10 +9,12 @@ Four stages, each modelled as a LangGraph node:
          END            END             END             END   (on error)
 
 The extra enrich_node is unique to Lynis: it cross-references each test_id against
-LYNIS_TEST_CATALOG — a curated mapping of Lynis controls to human-readable descriptions
-and remediation steps sourced from the official CISOfy controls database and the
-Lynis GitHub test files. This fills in the description/solution fields that the
-machine-readable report file omits (it stores test_id and severity only).
+LYNIS_TEST_CATALOG — a mapping of Lynis test IDs to human-readable descriptions and
+remediation steps, written for this project. This fills in the description/solution
+fields that the machine-readable report file omits (it stores test_id and severity only).
+
+See the WARNING above LYNIS_TEST_CATALOG: most of its descriptions do not match what
+the corresponding upstream Lynis test actually checks.
 
 Usage — standalone:
     python3 lynis_subgraph.py
@@ -42,10 +44,21 @@ from lynis_parser import (
     run_lynis_audit,
 )
 
-# ── Official Lynis test catalog ────────────────────────────────────────────────
-# Sourced from cisofy.com/lynis/controls/ and the CISOfy/lynis GitHub test files.
+# ── Lynis test catalog ─────────────────────────────────────────────────────────
 # Maps test_id → {category, description, solution} so the enrich_node can fill in
 # the fields that the machine-readable report file omits.
+#
+# Original text, not copied from Lynis. Keep it that way: Lynis is GPL-3.0 and this
+# project is GPL-2.0-only, so pasting upstream text in here would be a license conflict.
+#
+# WARNING — UNVERIFIED MAPPINGS. As of 2026-07-09 these descriptions were compared
+# against all 43 include/tests_* files in CISOfy/lynis@master. Of 80 entries, 71
+# describe something *different* from what that test ID actually checks upstream, and
+# 2 IDs (incl. SSH-7408) do not exist upstream at all. Example: AUTH-9204 upstream is
+# "Check users with an UID of zero", not the passwordless-account check claimed below.
+# These strings reach end users via enrich_node and seed synth_findings.py's training
+# rows, so a wrong mapping is a wrong report and a poisoned training example.
+# Do not add entries without checking the ID against upstream first.
 
 LYNIS_TEST_CATALOG: Dict[str, Dict[str, str]] = {
     # ── AUTH — Authentication ──────────────────────────────────────────────────

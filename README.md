@@ -124,6 +124,9 @@ It does not contain, link against, or modify any scanner's source. All five rema
 copyright of their respective authors, under their own licenses, and all credit for the
 actual scanning work belongs to them.
 
+`LYNIS_TEST_CATALOG` in `lynis_subgraph.py` is original work by this project's author. It
+is keyed by Lynis test ID but contains no text from Lynis.
+
 | Tool | Author / Maintainer | License | Role in mark2 |
 |---|---|---|---|
 | [Nmap](https://nmap.org) | Nmap Software LLC (Gordon "Fyodor" Lyon) | [Nmap Public Source License](https://nmap.org/npsl/) (NPSL, GPLv2-derived) | Port/service discovery, version detection, IoT default-credential NSE checks |
