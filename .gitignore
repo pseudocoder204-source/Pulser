@@ -34,4 +34,8 @@ clamav_full_scan_log
 futurePlan.txt
 FinetuneGuide.txt
 GuideToWindowsCompatibility.txt
+LicensingPlan.txt
 commands.txt
+
+# ---- Virtualenvs ----
+finetune/venv/
