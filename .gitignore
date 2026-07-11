@@ -30,6 +30,12 @@ clamav_*.log
 clamav_full_scan_log
 *.log
 
+# ---- Exported training data (once real scans are merged in, these carry real
+# hostnames/IPs/file paths from trainset.db — regenerate locally via
+# export_trainset.py, never publish) ----
+finetune/train.jsonl
+finetune/eval.jsonl
+
 # ---- Internal planning / scratch notes (not for the public repo) ----
 notes/
 
