@@ -31,13 +31,7 @@ clamav_full_scan_log
 *.log
 
 # ---- Internal planning / scratch notes (not for the public repo) ----
-futurePlan.txt
-FinetuneGuide.txt
-GuideToWindowsCompatibility.txt
-LicensingPlan.txt
-commands.txt
-finetune/modal_training_issues.md
-finetune/base_model.txt
+notes/
 
 # ---- Virtualenvs ----
 finetune/venv/

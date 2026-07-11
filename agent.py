@@ -547,37 +547,12 @@ def _deterministic_report(table: List[Dict[str, Any]], order: List[int]) -> Dict
     }
 
 
-_TRAINING_LOG_PATH = os.environ.get("REPORT_TRAINING_LOG", "report_training_log.jsonl")
-
-
-def _log_training_input(ordered_facts: List[Dict[str, Any]], raw_output: Optional[str] = None, passed_validation: Optional[bool] = None) -> None:
-    """Append one raw (input, output, pass/fail) triple to the report-LLM training log.
-
-    Per FinetuneGuide.txt Step 2: this is the training-data collection point for the
-    report LoRA — logging the exact ordered_facts the model saw plus whether its
-    output passed the real validators gives a free rejection-rate baseline before
-    any fine-tuning starts.
-    """
-    record = {
-        "ordered_facts": ordered_facts,
-        "raw_output": raw_output,
-        "passed_validation": passed_validation,
-        "logged_at": time.time(),
-    }
-    try:
-        with open(_TRAINING_LOG_PATH, "a") as f:
-            f.write(json.dumps(record) + "\n")
-    except OSError as e:
-        print(f"[report] failed to write training log: {e}", file=sys.stderr)
-
-
 def run_report(llm, table: List[Dict[str, Any]], order: List[int]) -> Dict[str, Any]:
     if not table:
         return {"overall_risk": "low", "summary": "No findings were reported by any scanner.", "findings": [], "good_news": ["Nothing suspicious was found."]}
 
     by_ref = {f["ref"]: f for f in table}
     ordered_facts = [by_ref[r] for r in order if r in by_ref]
-    _log_training_input(ordered_facts)
     messages = [
         SystemMessage(content=_REPORT_SYSTEM_PROMPT),
         HumanMessage(content=json.dumps(ordered_facts)),
@@ -586,16 +561,12 @@ def run_report(llm, table: List[Dict[str, Any]], order: List[int]) -> Dict[str, 
     for attempt in range(2):
         response = llm.invoke(messages)
         text = response.content
-        passed = False
         try:
             report = _parse_report(text)
         except ValueError:
             report = None
         if report is not None and _validate_report_text(report) and _validate_report_severities(report, table):
-            passed = True
-            _log_training_input(ordered_facts, raw_output=text, passed_validation=True)
             return report
-        _log_training_input(ordered_facts, raw_output=text, passed_validation=passed)
         print(f"[report] attempt {attempt + 1} failed literal/schema/severity validation", file=sys.stderr)
         messages.append(HumanMessage(content=(
             "Your previous response was rejected: it either contained a raw CVE ID, "
