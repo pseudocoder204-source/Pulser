@@ -175,13 +175,6 @@ and consent before scanning.
 
 👉 **See [CONTRIBUTING_SCAN_DATA.md](CONTRIBUTING_SCAN_DATA.md) for the full walkthrough.**
 
-## Team
-
-| Name | Role |
-|---|---|
-| Aditya Soni | Lead Developer & Architect |
-| Andrew Macedo | Community Outreach |
-
 ## License & attributions
 
 mark2 is licensed under the **GNU General Public License v2** (see [`LICENSE`](LICENSE)).
