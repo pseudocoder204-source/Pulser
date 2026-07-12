@@ -168,8 +168,21 @@ CVE enrichment reads a local SQLite cache, `vulnerability_cache.db`. It's **~3.2
 it is **not** in the repo — download the compressed copy (~126 MB) from the Releases page
 and unpack it into the repo root:
 
+**Linux / macOS:**
+
 ```bash
 gunzip -c vulnerability_cache.db.gz > vulnerability_cache.db
+```
+
+**Windows** (PowerShell — `gunzip`/`gzip` aren't available by default; this uses .NET's
+built-in `GzipStream` so no extra tools are required):
+
+```powershell
+$in  = [System.IO.File]::OpenRead("vulnerability_cache.db.gz")
+$out = [System.IO.File]::Create("vulnerability_cache.db")
+$gz  = New-Object System.IO.Compression.GzipStream($in, [System.IO.Compression.CompressionMode]::Decompress)
+$gz.CopyTo($out)
+$gz.Close(); $out.Close(); $in.Close()
 ```
 
 Without it, the pipeline creates an empty cache and syncs ~30 days of recent CVEs from NVD
