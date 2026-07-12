@@ -187,7 +187,10 @@ if (-not (Test-Path .\vulnerability_cache.db.gz)) {
 # without this, GzipStream fails with "Cannot find type [System.IO.Compression.GzipStream]".
 Add-Type -AssemblyName System.IO.Compression
 $in  = [System.IO.File]::OpenRead((Resolve-Path .\vulnerability_cache.db.gz))
-$out = [System.IO.File]::Create("vulnerability_cache.db")
+# Use a path built from PowerShell's own location, not a bare relative string -
+# .NET's Create()/OpenRead() resolve relative paths against Environment.CurrentDirectory,
+# which can silently differ from PowerShell's $PWD and send/deny the file elsewhere.
+$out = [System.IO.File]::Create((Join-Path (Get-Location) "vulnerability_cache.db"))
 $gz  = New-Object System.IO.Compression.GzipStream($in, [System.IO.Compression.CompressionMode]::Decompress)
 $gz.CopyTo($out)
 $gz.Close(); $out.Close(); $in.Close()
