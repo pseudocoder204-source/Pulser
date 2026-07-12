@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# mark2 native installer for Windows.
+# Pulser native installer for Windows.
 #
 # What this does: installs nmap, Nuclei, the Python dependencies, and pulls the
 # Ollama models. On Windows the host audit uses the native PowerShell audit and
 # malware uses Windows Defender's own threat history, so Lynis and ClamAV are
 # intentionally NOT installed here. Trivy is also NOT installed - its
-# filesystem-scan mode is always skipped on Windows (see below), so mark2 never
+# filesystem-scan mode is always skipped on Windows (see below), so Pulser never
 # invokes it there.
 #
-# Licensing note (see LICENSING.md): mark2 ships no scanner binaries.
+# Licensing note (see LICENSING.md): Pulser ships no scanner binaries.
 #   * nmap  - installed via winget if available (from nmap.org's own published
-#             package), never bundled or hosted by mark2. If winget can't do it,
+#             package), never bundled or hosted by Pulser. If winget can't do it,
 #             this script only LINKS to nmap.org; it will not fetch the binary.
 #   * Npcap - required for nmap LAN scans on Windows. Its license forbids
 #             redistribution without written permission, so this script NEVER
@@ -33,7 +33,7 @@ function Ok($m)   { Write-Host "  [ok] $m" -ForegroundColor Green }
 function Warn($m) { Write-Host "  [!]  $m" -ForegroundColor Yellow }
 function Failm($m){ Write-Host "  [x]  $m" -ForegroundColor Red }
 
-Info "mark2 Windows installer"
+Info "Pulser Windows installer"
 
 $hasWinget = Have winget
 if (-not $hasWinget) {
@@ -62,7 +62,7 @@ if ($npcapPresent) {
     Ok "Npcap detected (nmap LAN scans available)"
 } else {
     Warn "Npcap NOT detected. LAN discovery/SYN/OS-detection scans need it."
-    $manual += "Npcap - install yourself from https://npcap.com/#download (mark2 cannot redistribute it)"
+    $manual += "Npcap - install yourself from https://npcap.com/#download (Pulser cannot redistribute it)"
 }
 
 # --- 3. Nuclei (Windows binary from upstream) ----------------------------------
@@ -70,9 +70,11 @@ if ($npcapPresent) {
 # returns {"status":"skipped"} on Windows (its fs mode reads Linux package DBs
 # - dpkg/rpm/apk - that don't exist on Windows; host audit's Windows Update
 # check covers OS-patch state instead), so installing it would just be wasted
-# time/bandwidth for a scanner mark2 will never invoke on this platform.
+# time/bandwidth for a scanner Pulser will never invoke on this platform.
 $binDir = if ($env:MARK2_BIN_DIR) { $env:MARK2_BIN_DIR } else { Join-Path $PSScriptRoot "bin" }
 New-Item -ItemType Directory -Force -Path $binDir | Out-Null
+
+Info "Skipping Trivy on purpose: its filesystem scan needs Linux package DBs (dpkg/rpm/apk) that don't exist on Windows -- the host audit's Windows Update check covers OS-patch state instead."
 
 if (Have nuclei) {
     Ok "Nuclei already installed"; $already += "Nuclei"
@@ -83,7 +85,7 @@ if (Have nuclei) {
         $rel  = Invoke-RestMethod "https://api.github.com/repos/projectdiscovery/nuclei/releases/latest"
         $ver  = $rel.tag_name.TrimStart('v')
         $url  = "https://github.com/projectdiscovery/nuclei/releases/download/v$ver/nuclei_${ver}_windows_${arch}.zip"
-        $zip  = Join-Path $env:TEMP "mark2-nuclei.zip"
+        $zip  = Join-Path $env:TEMP "pulser-nuclei.zip"
         Invoke-WebRequest $url -OutFile $zip
         Expand-Archive $zip -DestinationPath $binDir -Force
         Remove-Item $zip
@@ -133,9 +135,9 @@ if ($missing)   { Write-Host "  Needs attention:"; $missing | ForEach-Object { F
 Write-Host ""
 Write-Host "  You must still do yourself:" -ForegroundColor White
 $manual | ForEach-Object { Warn $_ }
-Warn "Run mark2 as Administrator for elevation-gated audit checks and raw-socket nmap scans."
+Warn "Run Pulser as Administrator for elevation-gated audit checks and raw-socket nmap scans."
 Warn "The CVE cache (~3.2 GB) is not installed here - download vulnerability_cache.db.gz from Releases (see README)."
 
 Write-Host ""
 if (-not $missing) { Ok "Ready. Run: python agent.py --target 127.0.0.1" }
-else { Warn "Some components need manual attention; mark2 still runs degraded (missing scanners report 'unavailable')." }
+else { Warn "Some components need manual attention; Pulser still runs degraded (missing scanners report 'unavailable')." }
