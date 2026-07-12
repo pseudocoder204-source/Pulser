@@ -178,7 +178,12 @@ gunzip -c vulnerability_cache.db.gz > vulnerability_cache.db
 built-in `GzipStream` so no extra tools are required):
 
 ```powershell
-$in  = [System.IO.File]::OpenRead("vulnerability_cache.db.gz")
+# Run from the repo root with vulnerability_cache.db.gz already in this folder
+# (move it here from Downloads first if that's where your browser saved it).
+if (-not (Test-Path .\vulnerability_cache.db.gz)) {
+    throw "vulnerability_cache.db.gz not found in $(Get-Location) - move/download it here first."
+}
+$in  = [System.IO.File]::OpenRead((Resolve-Path .\vulnerability_cache.db.gz))
 $out = [System.IO.File]::Create("vulnerability_cache.db")
 $gz  = New-Object System.IO.Compression.GzipStream($in, [System.IO.Compression.CompressionMode]::Decompress)
 $gz.CopyTo($out)
