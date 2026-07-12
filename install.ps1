@@ -8,10 +8,10 @@
 # own threat history, so Lynis and ClamAV are intentionally NOT installed here.
 #
 # Licensing note (see LICENSING.md): mark2 ships no scanner binaries.
-#   * nmap  — installed via winget if available (from nmap.org's own published
+#   * nmap  - installed via winget if available (from nmap.org's own published
 #             package), never bundled or hosted by mark2. If winget can't do it,
 #             this script only LINKS to nmap.org; it will not fetch the binary.
-#   * Npcap — required for nmap LAN scans on Windows. Its license forbids
+#   * Npcap - required for nmap LAN scans on Windows. Its license forbids
 #             redistribution without written permission, so this script NEVER
 #             downloads or installs it. It only detects it and links to
 #             https://npcap.com/#download. You install Npcap yourself.
@@ -35,10 +35,10 @@ Info "mark2 Windows installer"
 
 $hasWinget = Have winget
 if (-not $hasWinget) {
-    Warn "winget not found — tools that would install via winget will be listed for manual install."
+    Warn "winget not found - tools that would install via winget will be listed for manual install."
 }
 
-# ── 1. nmap (via winget only — never bundled) ─────────────────────────────────
+# --- 1. nmap (via winget only - never bundled) --------------------------------
 if (Have nmap) {
     Ok "nmap already installed"; $already += "nmap"
 } elseif ($hasWinget) {
@@ -46,24 +46,24 @@ if (Have nmap) {
     try {
         winget install --id Insecure.Nmap --accept-package-agreements --accept-source-agreements -e | Out-Null
         if (Have nmap) { Ok "nmap installed"; $installed += "nmap" }
-        else { Warn "nmap installed but not on PATH — reopen your shell"; $installed += "nmap" }
+        else { Warn "nmap installed but not on PATH - reopen your shell"; $installed += "nmap" }
     } catch {
-        Failm "winget could not install nmap"; $manual += "nmap — download from https://nmap.org/download.html"
+        Failm "winget could not install nmap"; $manual += "nmap - download from https://nmap.org/download.html"
     }
 } else {
-    $manual += "nmap — download from https://nmap.org/download.html"
+    $manual += "nmap - download from https://nmap.org/download.html"
 }
 
-# ── 2. Npcap — DETECT AND LINK ONLY (never downloaded; license forbids it) ────
+# --- 2. Npcap - DETECT AND LINK ONLY (never downloaded; license forbids it) ---
 $npcapPresent = Test-Path "$env:SystemRoot\System32\Npcap"
 if ($npcapPresent) {
     Ok "Npcap detected (nmap LAN scans available)"
 } else {
     Warn "Npcap NOT detected. LAN discovery/SYN/OS-detection scans need it."
-    $manual += "Npcap — install yourself from https://npcap.com/#download (mark2 cannot redistribute it)"
+    $manual += "Npcap - install yourself from https://npcap.com/#download (mark2 cannot redistribute it)"
 }
 
-# ── 3. Trivy + Nuclei (Windows binaries from upstream) ────────────────────────
+# --- 3. Trivy + Nuclei (Windows binaries from upstream) -----------------------
 $binDir = if ($env:MARK2_BIN_DIR) { $env:MARK2_BIN_DIR } else { Join-Path $PSScriptRoot "bin" }
 New-Item -ItemType Directory -Force -Path $binDir | Out-Null
 
@@ -73,9 +73,9 @@ if (Have trivy) {
     Info "Installing Trivy via winget"
     try { winget install --id AquaSecurity.Trivy --accept-package-agreements --accept-source-agreements -e | Out-Null
           Ok "Trivy installed"; $installed += "Trivy" }
-    catch { Failm "Trivy install failed"; $manual += "Trivy — https://trivy.dev (or drop trivy.exe in $binDir)" }
+    catch { Failm "Trivy install failed"; $manual += "Trivy - https://trivy.dev (or drop trivy.exe in $binDir)" }
 } else {
-    $manual += "Trivy — download trivy.exe from https://github.com/aquasecurity/trivy/releases into $binDir"
+    $manual += "Trivy - download trivy.exe from https://github.com/aquasecurity/trivy/releases into $binDir"
 }
 Warn "Note: Trivy's filesystem scan is skipped on Windows (no dpkg/rpm/apk DB); host audit covers OS patch state instead."
 
@@ -94,23 +94,23 @@ if (Have nuclei) {
         Remove-Item $zip
         Ok "Nuclei installed (v$ver) into $binDir"; $installed += "Nuclei"
         try { & (Join-Path $binDir "nuclei.exe") -update-templates | Out-Null; Ok "Nuclei templates updated" }
-        catch { Warn "Template update failed — run 'nuclei -update-templates' later" }
+        catch { Warn "Template update failed - run 'nuclei -update-templates' later" }
     } catch {
-        Failm "Nuclei install failed"; $manual += "Nuclei — https://github.com/projectdiscovery/nuclei/releases into $binDir"
+        Failm "Nuclei install failed"; $manual += "Nuclei - https://github.com/projectdiscovery/nuclei/releases into $binDir"
     }
 }
 
-# ── 4. Python dependencies ────────────────────────────────────────────────────
+# --- 4. Python dependencies -----------------------------------------------
 if (Have python) {
     Info "Installing Python dependencies (requirements.txt)"
     try { python -m pip install -r (Join-Path $PSScriptRoot "requirements.txt") | Out-Null
           Ok "Python dependencies installed"; $installed += "Python deps" }
-    catch { Warn "pip install failed — try it inside a venv"; $missing += "Python deps" }
+    catch { Warn "pip install failed - try it inside a venv"; $missing += "Python deps" }
 } else {
-    Failm "python not found — install Python 3.10+ from https://python.org"; $missing += "Python 3.10+"
+    Failm "python not found - install Python 3.10+ from https://python.org"; $missing += "Python 3.10+"
 }
 
-# ── 5. Ollama models ──────────────────────────────────────────────────────────
+# --- 5. Ollama models -------------------------------------------------------
 # Edit this list as you publish more models.
 $ollamaModels = @("llama3.1:8b", "pseudocoder204/mark2-report")
 if (Have ollama) {
@@ -120,15 +120,15 @@ if (Have ollama) {
         else {
             Info "Pulling Ollama model $m"
             try { ollama pull $m | Out-Null; Ok "Pulled $m"; $installed += "ollama:$m" }
-            catch { Warn "Could not pull $m — is Ollama running?"; $missing += "ollama:$m" }
+            catch { Warn "Could not pull $m - is Ollama running?"; $missing += "ollama:$m" }
         }
     }
 } else {
-    Warn "Ollama not found — skipping model pulls"
-    $manual += "Ollama — install from https://ollama.com/download, then re-run this script"
+    Warn "Ollama not found - skipping model pulls"
+    $manual += "Ollama - install from https://ollama.com/download, then re-run this script"
 }
 
-# ── summary ───────────────────────────────────────────────────────────────────
+# --- summary -----------------------------------------------------------------
 Write-Host ""
 Info "Summary"
 if ($installed) { Write-Host "  Installed now:"; $installed | ForEach-Object { Ok $_ } }
@@ -139,7 +139,7 @@ Write-Host ""
 Write-Host "  You must still do yourself:" -ForegroundColor White
 $manual | ForEach-Object { Warn $_ }
 Warn "Run mark2 as Administrator for elevation-gated audit checks and raw-socket nmap scans."
-Warn "The CVE cache (~3.2 GB) is not installed here — download vulnerability_cache.db.gz from Releases (see README)."
+Warn "The CVE cache (~3.2 GB) is not installed here - download vulnerability_cache.db.gz from Releases (see README)."
 
 Write-Host ""
 if (-not $missing) { Ok "Ready. Run: python agent.py --target 127.0.0.1" }
