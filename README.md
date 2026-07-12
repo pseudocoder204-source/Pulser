@@ -183,6 +183,9 @@ built-in `GzipStream` so no extra tools are required):
 if (-not (Test-Path .\vulnerability_cache.db.gz)) {
     throw "vulnerability_cache.db.gz not found in $(Get-Location) - move/download it here first."
 }
+# Windows PowerShell 5.1 doesn't load System.IO.Compression by default (PowerShell Core does) -
+# without this, GzipStream fails with "Cannot find type [System.IO.Compression.GzipStream]".
+Add-Type -AssemblyName System.IO.Compression
 $in  = [System.IO.File]::OpenRead((Resolve-Path .\vulnerability_cache.db.gz))
 $out = [System.IO.File]::Create("vulnerability_cache.db")
 $gz  = New-Object System.IO.Compression.GzipStream($in, [System.IO.Compression.CompressionMode]::Decompress)
