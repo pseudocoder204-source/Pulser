@@ -14,7 +14,7 @@ stock generations over the held-out eval set) against the bar that matters:
            tie is a loss for the tuning effort, not a wash).
 
 Usage:
-    python3 score_triage_eval.py
+    python3 finetune/score_triage_7b_eval.py
 """
 
 import json
@@ -22,12 +22,12 @@ import pathlib
 import sys
 from typing import Any, Dict, List, Optional
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 import agent  # noqa: E402
 
-_OUT_PATH = pathlib.Path(__file__).resolve().parent / "finetune" / "eval_triage_outputs.json"
-_SCORES_PATH = pathlib.Path(__file__).resolve().parent / "finetune" / "eval_triage_scores.json"
+_OUT_PATH = pathlib.Path(__file__).resolve().parent / "eval_triage_7b_outputs.json"
+_SCORES_PATH = pathlib.Path(__file__).resolve().parent / "eval_triage_7b_scores.json"
 
 
 def _tier_of(table: List[Dict[str, Any]]) -> Dict[int, str]:

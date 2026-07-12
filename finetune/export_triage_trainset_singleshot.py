@@ -19,14 +19,17 @@ written (this variant never calls lookup_cves, matching run_triage's
 fallback if this doesn't clear the bar either: keep _fallback_order).
 
 Usage:
-    python3 export_triage_trainset_singleshot.py [--db trainset.db]
+    python3 finetune/export_triage_trainset_singleshot.py [--db trainset.db]
         [--out-dir finetune] [--eval-frac 0.1] [--seed 0]
 """
 
 import argparse
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import _MAX_ESCALATIONS, _TRIAGE_SYSTEM_PROMPT
 

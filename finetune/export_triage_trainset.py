@@ -33,7 +33,7 @@ Split is stratified by (profile-or-source, escalation-vs-no-escalation) so
 eval covers both tool-call and direct (zero-escalation) traces (Step 8).
 
 Usage:
-    python3 export_triage_trainset.py [--db trainset.db] [--out-dir finetune]
+    python3 finetune/export_triage_trainset.py [--db trainset.db] [--out-dir finetune]
                                        [--eval-frac 0.1] [--seed 0]
 """
 
@@ -41,8 +41,11 @@ import argparse
 import json
 import random
 import sqlite3
+import sys
 from collections import defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from langchain_core.utils.function_calling import convert_to_openai_tool
 

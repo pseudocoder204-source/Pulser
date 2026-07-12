@@ -19,15 +19,19 @@ Contest shapes (Step 3a-3d):
     model when NOT to spend an escalation.
 
 Usage:
-    python3 synth_findings_triage.py --db trainset.db --shape contested_critical --count 40
-    python3 synth_findings_triage.py --db trainset.db   # generates the full default mix
+    python3 finetune/synth_findings_triage.py --db trainset.db --shape contested_critical --count 40
+    python3 finetune/synth_findings_triage.py --db trainset.db   # generates the full default mix
 """
 
 import argparse
 import json
 import random
 import sqlite3
+import sys
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import build_findings_table
 

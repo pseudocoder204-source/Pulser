@@ -12,7 +12,7 @@ No Step 13 here — this variant never calls lookup_cves by construction, so
 there's no escalation precision/recall to measure.
 
 Usage:
-    python3 score_triage_singleshot_eval.py
+    python3 finetune/score_triage_singleshot_eval.py
 """
 
 import json
@@ -20,12 +20,12 @@ import pathlib
 import sys
 from typing import Any, Dict, List, Optional
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 import agent  # noqa: E402
 
-_OUT_PATH = pathlib.Path(__file__).resolve().parent / "finetune" / "eval_triage_singleshot_outputs.json"
-_SCORES_PATH = pathlib.Path(__file__).resolve().parent / "finetune" / "eval_triage_singleshot_scores.json"
+_OUT_PATH = pathlib.Path(__file__).resolve().parent / "eval_triage_singleshot_outputs.json"
+_SCORES_PATH = pathlib.Path(__file__).resolve().parent / "eval_triage_singleshot_scores.json"
 
 
 def _tier_of(table: List[Dict[str, Any]]) -> Dict[int, str]:

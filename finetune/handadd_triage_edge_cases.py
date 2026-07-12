@@ -22,13 +22,17 @@ Four cases (Step 6 bullets):
                                  always carry cpe=None (agent.py:256), so it can never appear
                                  in valid_cpes and must never be escalated
 
-Usage: python3 handadd_triage_edge_cases.py [--db trainset.db] [--vuln-db vulnerability_cache.db]
+Usage: python3 finetune/handadd_triage_edge_cases.py [--db trainset.db] [--vuln-db vulnerability_cache.db]
 """
 
 import argparse
 import json
 import sqlite3
+import sys
+from pathlib import Path
 from typing import Any, Dict, List
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import build_findings_table
 from label_triage_batch import draft_triage_label

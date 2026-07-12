@@ -22,15 +22,18 @@ tier-shape a profile can produce, and every real anchor, appears in eval too
 (Step 3a/Step 9).
 
 Usage:
-    python3 export_trainset.py [--db trainset.db] [--out-dir .] [--eval-frac 0.1] [--seed 0]
+    python3 finetune/export_trainset.py [--db trainset.db] [--out-dir finetune] [--eval-frac 0.1] [--seed 0]
 """
 
 import argparse
 import json
 import random
 import sqlite3
+import sys
 from collections import defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import _REPORT_SYSTEM_PROMPT
 

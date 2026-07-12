@@ -14,13 +14,16 @@ A row is promoted to 'validated' only if ALL hold:
 Anything that fails any check is marked 'rejected' with the reason printed to stderr so a
 labeling bug can be traced back to label_triage_batch.py rather than silently dropped.
 
-Usage: python3 validate_triage_labels.py <lo> <hi>
+Usage: python3 finetune/validate_triage_labels.py <lo> <hi>
 """
 
 import json
 import sqlite3
 import sys
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import _MAX_ESCALATIONS, _validate_triage_order
 

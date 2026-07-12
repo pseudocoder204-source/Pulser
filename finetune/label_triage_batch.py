@@ -36,7 +36,7 @@ label_batch.py's template/classifier tables stand in for per-row LLM drafting):
   5. Escalated members always outrank un-escalated members of the same tie (we confirmed one
      is worse via real data; the other is simply unknown, not equal).
 
-Usage: python3 label_triage_batch.py <lo> <hi> [--relabel]
+Usage: python3 finetune/label_triage_batch.py <lo> <hi> [--relabel]
   --relabel  re-draft rows already labeled in this range (default: pending only)
 """
 
@@ -44,7 +44,10 @@ import json
 import sqlite3
 import sys
 from collections import defaultdict
+from pathlib import Path
 from typing import Any, Dict, List, Tuple
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import _MAX_ESCALATIONS, _TIER_RANK, _validate_triage_order
 from label_batch import _VULN_CLASS_KEYWORDS, _classify_vuln

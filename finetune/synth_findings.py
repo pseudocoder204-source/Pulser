@@ -12,15 +12,19 @@ vocabulary is sampled from vulnerability_cache.db (CVEs) and LYNIS_TEST_CATALOG 
 test IDs) rather than invented, so labels drafted later stay grounded in real facts.
 
 Usage:
-    python3 synth_findings.py --db trainset.db --per-profile 45
-    python3 synth_findings.py --db trainset.db --profile clean_healthy --per-profile 10
+    python3 finetune/synth_findings.py --db trainset.db --per-profile 45
+    python3 finetune/synth_findings.py --db trainset.db --profile clean_healthy --per-profile 10
 """
 
 import argparse
 import json
 import random
 import sqlite3
+import sys
+from pathlib import Path
 from typing import Any, Dict, List, Optional
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import build_findings_table, _fallback_order
 from lynis_subgraph import LYNIS_TEST_CATALOG

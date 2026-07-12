@@ -5,7 +5,7 @@ Not part of the shipped pipeline — a scratch script used interactively through
 Code to draft gold report JSON for a range of rows, then run it through the real
 validators (agent.py) before promoting status to 'validated'.
 
-Usage: python3 label_batch.py <lo> <hi> [--relabel]
+Usage: python3 finetune/label_batch.py <lo> <hi> [--relabel]
   --relabel  re-draft rows already labeled/validated in this range (default: pending only)
 """
 
@@ -13,6 +13,9 @@ import json
 import re
 import sqlite3
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent import _validate_report_text, _validate_report_severities, _parse_report, build_findings_table, _CVE_RE, _CPE_RE
 from lynis_subgraph import LYNIS_TEST_CATALOG
