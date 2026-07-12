@@ -1,4 +1,4 @@
-# mark2
+# AstuteAI
 
 A multi-scanner home-network security pipeline. It combines several open-source
 scanners into one agentic system that produces a **plain-English** security report for
