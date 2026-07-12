@@ -18,6 +18,11 @@ order, flattens all findings into a single table, and uses an LLM **only** to re
 explain those findings — never to choose what to scan. See `CLAUDE.md` for the full
 architecture.
 
+## Why I built this
+
+I'm a 15-year-old self-taught developer, and this is my passion project. Small business owners and everyday people want to know their devices and network are safe, but there's no single tool that just tells you, in plain English, what's actually wrong and how to fix it. I'm not trying to replace Windows Defender or the pile of antivirus software already out there. I built AstuteAI to be a quick "health checkup" for your network and devices: run it, and it tells you exactly what it found and what to do about it, so you get peace of mind without needing to be a security expert.
+
+
 ## Requirements
 
 - Python 3.10+
