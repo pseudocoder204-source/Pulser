@@ -21,7 +21,7 @@ non-technical users:
 Each scanner has a parser and a self-contained [LangGraph](https://github.com/langchain-ai/langgraph)
 subgraph. A deterministic orchestration layer (`agent.py`) runs the scanners in a fixed
 order, flattens all findings into a single table, and uses an LLM **only** to reorder and
-explain those findings — never to choose what to scan. See `CLAUDE.md` for the full
+explain those findings rather than choosing what to scan. See `CLAUDE.md` for the full
 architecture.
 
 ![Pulser demo](docs/demo.gif)
@@ -65,8 +65,8 @@ cd Pulser
 ```
 
 (Prefer SSH? `git clone git@github.com:pseudocoder204-source/Pulser.git` works the same
-way.) Every command below — `install.sh`/`install.ps1`, `pip install`, `python3 agent.py`,
-`docker build` — assumes you're running it from inside that `Pulser/` directory.
+way.) Every command below (`install.sh`/`install.ps1`, `pip install`, `python3 agent.py`,
+`docker build`) assumes you're running it from inside that `Pulser/` directory.
 
 ## Requirements
 
@@ -88,7 +88,7 @@ ClamAV) proceed normally. You lose the network findings, not the run.
 ## Quick install
 
 An installer script provisions the scanner tools and the Python dependencies in one shot. It
-**installs**, never bundles — every tool comes from your OS package manager or the tool's own
+**installs** the tools rather than bundling them to avoid licensing issues. Every tool comes from your OS package manager or the tool's own
 upstream release (nmap from your distro/`winget`, Trivy and Nuclei from their official
 installers), so Pulser redistributes nothing. It's idempotent: anything already present is
 skipped.
@@ -104,7 +104,7 @@ python3 -m venv .venv && source .venv/bin/activate   # recommended
 > like to access files in your Documents folder."* That's macOS's own privacy protection
 > (TCC) reacting to Lynis's post-install step touching your home directory — `install.sh`
 > itself never runs Lynis, it only installs the binary. It's safe to click **Allow**. You may
-> see a similar prompt again later for real, when you actually run a diagnostic — Lynis's
+> see a similar prompt again later for real, when you actually run a diagnostic because Lynis's
 > `audit_host` stage genuinely scans your filesystem for hardening checks, so that one's
 > expected too.
 
@@ -299,7 +299,7 @@ This project is collecting **real, anonymized** scan findings to improve the rep
 model. If you'd like to help, run one scan on a machine you own and submit a single
 small JSON file via this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfQIl3y1xTYoaWhLFSuIMLQh6TmnucyQUBe1x5bK01qFlD1zw/viewform).
 It records only a findings summary (ports, versions, CVE IDs, hardening test IDs,
-package names) — **never** file contents, credentials, or logs, and it makes you review
+package names), **never** file contents, credentials, or logs, and it makes you review
 and consent before scanning.
 
 👉 **See [CONTRIBUTING_SCAN_DATA.md](CONTRIBUTING_SCAN_DATA.md) for the full walkthrough.**
