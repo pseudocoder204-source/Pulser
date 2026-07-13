@@ -144,6 +144,8 @@ that produces better home-user-facing reports than the stock model at the same s
 
 ## Running a diagnostic
 
+**Linux / macOS:**
+
 ```bash
 # Scan your own machine (default target 127.0.0.1) with the default Ollama backend
 # (stock llama3.1:8b for the report stage)
@@ -155,6 +157,25 @@ OLLAMA_MODEL=pseudocoder204/mark2-report python3 agent.py [--target IP] [--json]
 
 # Use Anthropic instead of Ollama
 LLM_PROVIDER=claude ANTHROPIC_API_KEY=sk-... python3 agent.py
+```
+
+**Windows** (PowerShell — inline `VAR=value` prefixes like the bash examples above aren't
+valid syntax; set the environment variable first, then run the script):
+
+```powershell
+# Scan your own machine (default target 127.0.0.1) with the default Ollama backend
+# (stock llama3.1:8b for the report stage)
+python agent.py --target IP --json
+
+# Use the fine-tuned mark2-report model for the report stage instead of stock
+# llama3.1:8b (after pulling it — see [Setting up Ollama](#setting-up-ollama)):
+$env:OLLAMA_MODEL = "pseudocoder204/mark2-report"
+python agent.py --target IP --json
+
+# Use Anthropic instead of Ollama
+$env:LLM_PROVIDER = "claude"
+$env:ANTHROPIC_API_KEY = "sk-..."
+python agent.py
 ```
 
 You can also run any single scanner's subgraph standalone:
