@@ -78,6 +78,23 @@ function Skipm($m){ Write-Host "  ( )  $m" -ForegroundColor DarkGray }
 # a multi-GB model pull, a 3.2 GB cache decompression) with zero console output,
 # which reads as "the installer is stuck." This prints an elapsed-time heartbeat
 # every few seconds until the job finishes, then reports its outcome.
+function Wait-ForHttp($url, $maxSeconds, $label) {
+    $start = Get-Date
+    while (((Get-Date) - $start).TotalSeconds -lt $maxSeconds) {
+        try {
+            Invoke-WebRequest $url -UseBasicParsing -TimeoutSec 2 | Out-Null
+            Write-Host "`r$(' ' * 80)`r" -NoNewline
+            return $true
+        } catch {
+            $elapsed = [int]((Get-Date) - $start).TotalSeconds
+            Write-Host "`r  ...  $label ($elapsed`s elapsed, still waiting)  " -NoNewline -ForegroundColor DarkGray
+            Start-Sleep -Seconds 2
+        }
+    }
+    Write-Host "`r$(' ' * 80)`r" -NoNewline
+    return $false
+}
+
 function Wait-WithHeartbeat($job, $label) {
     $start = Get-Date
     while (-not (Wait-Job $job -Timeout 3)) {
@@ -211,18 +228,15 @@ if ($Claude) {
     if (Have ollama) {
         # The Windows installer starts the server as a background service, but not
         # always instantly - `ollama pull` needs a live server on :11434.
-        $up = $false
-        foreach ($_i in 1..30) {
-            try { Invoke-WebRequest "http://localhost:11434/api/version" -UseBasicParsing -TimeoutSec 2 | Out-Null; $up = $true; break }
-            catch { Start-Sleep -Seconds 1 }
-        }
+        $up = Wait-ForHttp "http://localhost:11434/api/version" 20 "checking for the Ollama server"
         if (-not $up) {
             Info "Starting the Ollama server"
+            # A just-installed ollama.exe can be slow to come up on first run
+            # (Defender scanning the new binary, cold disk cache) - 90s here,
+            # not 20, since this is after we've explicitly launched it ourselves
+            # and there's nothing left to wait on but the process itself.
             Start-Process ollama -ArgumentList "serve" -WindowStyle Hidden
-            foreach ($_i in 1..30) {
-                try { Invoke-WebRequest "http://localhost:11434/api/version" -UseBasicParsing -TimeoutSec 2 | Out-Null; $up = $true; break }
-                catch { Start-Sleep -Seconds 1 }
-            }
+            $up = Wait-ForHttp "http://localhost:11434/api/version" 90 "waiting for the Ollama server to start"
         }
         if ($up) {
             if ((ollama list 2>$null | Out-String) -match [regex]::Escape($Model)) {
