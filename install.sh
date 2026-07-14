@@ -254,13 +254,14 @@ else
         fi
     fi
 
+    OLLAMA_SERVE_LOG="$(mktemp)"
     if have ollama; then
         # The Linux installer registers a systemd service; the macOS cask does not
         # start anything until the app runs. Either way, `ollama pull` needs a live
         # server on :11434, so make sure one is up before pulling.
         if ! curl -fsS http://localhost:11434/api/version >/dev/null 2>&1; then
             info "Starting the Ollama server"
-            nohup ollama serve >/dev/null 2>&1 &
+            nohup ollama serve > "$OLLAMA_SERVE_LOG" 2>&1 &
             for _ in $(seq 1 30); do
                 curl -fsS http://localhost:11434/api/version >/dev/null 2>&1 && break
                 sleep 1
@@ -276,15 +277,24 @@ else
                     attempt=1
                     until ollama pull "$MODEL"; do
                         [ "$attempt" -ge 3 ] && exit 1
-                        echo "--- pull attempt $attempt failed, retrying in 5s (ollama resumes from cached layers) ---"
+                        # A server that's still running but whose ~/.ollama got wiped or
+                        # corrupted underneath it (e.g. a stale process from before a
+                        # manual reset) fails every pull with the same on-disk error no
+                        # matter how many times you retry against it - restart the
+                        # server itself so a missing keypair/state gets regenerated.
+                        echo "--- pull attempt $attempt failed, restarting the Ollama server and retrying in 5s ---"
+                        pkill -f "ollama serve" 2>/dev/null || true
+                        sleep 1
+                        nohup ollama serve >/dev/null 2>&1 &
+                        sleep 4
                         attempt=$((attempt + 1))
-                        sleep 5
                     done
                 ) > "$OLLAMA_LOG" 2>&1 &
                 OLLAMA_PID=$!
             fi
         else
             warn "Ollama server didn't come up on :11434 — pull the model yourself later"
+            tail -n 5 "$OLLAMA_SERVE_LOG" 2>/dev/null | sed 's/^/    /' >&2 || true
             MANUAL+=("ollama serve && ollama pull $MODEL")
         fi
     fi
@@ -455,7 +465,7 @@ if [ -n "$CACHE_PID" ]; then
         MANUAL+=("CVE cache — download $CACHE_URL and gunzip it to $CACHE_DB")
     fi
 fi
-rm -f "$CACHE_LOG" "$OLLAMA_LOG"
+rm -f "$CACHE_LOG" "$OLLAMA_LOG" "${OLLAMA_SERVE_LOG:-}"
 
 # ── summary ───────────────────────────────────────────────────────────────────
 echo

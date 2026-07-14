@@ -229,13 +229,17 @@ if ($Claude) {
         # The Windows installer starts the server as a background service, but not
         # always instantly - `ollama pull` needs a live server on :11434.
         $up = Wait-ForHttp "http://localhost:11434/api/version" 20 "checking for the Ollama server"
+        $serveLog = Join-Path $env:TEMP "pulser-ollama-serve.log"
         if (-not $up) {
             Info "Starting the Ollama server"
             # A just-installed ollama.exe can be slow to come up on first run
             # (Defender scanning the new binary, cold disk cache) - 90s here,
             # not 20, since this is after we've explicitly launched it ourselves
             # and there's nothing left to wait on but the process itself.
-            Start-Process ollama -ArgumentList "serve" -WindowStyle Hidden
+            # Redirected to a log instead of discarded: if it never comes up,
+            # we otherwise have zero idea why (port conflict, missing dep, etc).
+            Start-Process ollama -ArgumentList "serve" -WindowStyle Hidden `
+                -RedirectStandardOutput $serveLog -RedirectStandardError "$serveLog.err"
             $up = Wait-ForHttp "http://localhost:11434/api/version" 90 "waiting for the Ollama server to start"
         }
         if ($up) {
@@ -248,14 +252,27 @@ if ($Claude) {
                     for ($attempt = 1; $attempt -le 3; $attempt++) {
                         & ollama pull $m 2>&1 | Out-String | Write-Output
                         if ($LASTEXITCODE -eq 0) { return }
-                        Write-Output "--- pull attempt $attempt failed, retrying in 5s (ollama resumes from cached layers) ---"
-                        Start-Sleep -Seconds 5
+                        # A server that's still running but whose state got wiped or
+                        # corrupted underneath it fails every pull the same way no
+                        # matter how many times you retry against it - restart the
+                        # server itself so missing state gets regenerated.
+                        Write-Output "--- pull attempt $attempt failed, restarting the Ollama server and retrying in 5s ---"
+                        Get-Process ollama -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+                        Start-Sleep -Seconds 1
+                        Start-Process ollama -ArgumentList "serve" -WindowStyle Hidden
+                        Start-Sleep -Seconds 4
                     }
                     throw "ollama pull failed after 3 attempts"
                 }
             }
         } else {
             Warn "Ollama server didn't come up on :11434 - pull the model yourself later"
+            foreach ($f in @($serveLog, "$serveLog.err")) {
+                if (Test-Path $f) {
+                    Get-Content $f -Tail 5 -ErrorAction SilentlyContinue |
+                        ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
+                }
+            }
             $manual += "ollama pull $Model"
         }
     }
