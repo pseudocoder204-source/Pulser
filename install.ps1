@@ -74,6 +74,20 @@ function Warn($m) { Write-Host "  [!]  $m" -ForegroundColor Yellow }
 function Failm($m){ Write-Host "  [x]  $m" -ForegroundColor Red }
 function Skipm($m){ Write-Host "  ( )  $m" -ForegroundColor DarkGray }
 
+# winget and Wait-Job both give long stretches (a multi-hundred-MB Ollama install,
+# a multi-GB model pull, a 3.2 GB cache decompression) with zero console output,
+# which reads as "the installer is stuck." This prints an elapsed-time heartbeat
+# every few seconds until the job finishes, then reports its outcome.
+function Wait-WithHeartbeat($job, $label) {
+    $start = Get-Date
+    while (-not (Wait-Job $job -Timeout 3)) {
+        $elapsed = [int]((Get-Date) - $start).TotalSeconds
+        Write-Host "`r  ...  $label ($elapsed`s elapsed, still running)  " -NoNewline -ForegroundColor DarkGray
+    }
+    Write-Host "`r$(' ' * 80)`r" -NoNewline
+    return $job
+}
+
 # --- 0. bootstrap: find or clone the repo ------------------------------------
 # Run from a clone, $PSScriptRoot sits next to agent.py and we use that tree. Piped
 # through iex there is no script on disk ($PSScriptRoot is empty), so clone instead.
@@ -171,9 +185,15 @@ if ($Claude) {
     if (Have ollama) {
         Ok "Ollama already installed"; $already += "Ollama"
     } elseif ($hasWinget) {
-        Info "Installing Ollama via winget"
+        Info "Installing Ollama via winget (a few hundred MB - this can take a few minutes)"
         try {
-            winget install --id Ollama.Ollama --accept-package-agreements --accept-source-agreements -e | Out-Null
+            $j = Start-Job -ScriptBlock {
+                winget install --id Ollama.Ollama --accept-package-agreements --accept-source-agreements -e
+                if ($LASTEXITCODE -ne 0) { throw "winget exited with code $LASTEXITCODE" }
+            }
+            Wait-WithHeartbeat $j "installing Ollama" | Out-Null
+            if ($j.State -ne 'Completed') { throw (Receive-Job $j -ErrorAction SilentlyContinue | Select-Object -Last 1) }
+            Remove-Job $j -Force
             # winget updates the machine PATH but not this already-running process's
             # copy of it, so a freshly installed ollama.exe is invisible to Have until
             # we re-read PATH from the registry.
@@ -228,7 +248,15 @@ if (Have nmap) {
 } elseif ($hasWinget) {
     Info "Installing nmap via winget (from nmap.org's published package)"
     try {
-        winget install --id Insecure.Nmap --accept-package-agreements --accept-source-agreements -e | Out-Null
+        $j = Start-Job -ScriptBlock {
+            winget install --id Insecure.Nmap --accept-package-agreements --accept-source-agreements -e
+            if ($LASTEXITCODE -ne 0) { throw "winget exited with code $LASTEXITCODE" }
+        }
+        Wait-WithHeartbeat $j "installing nmap" | Out-Null
+        if ($j.State -ne 'Completed') { throw (Receive-Job $j -ErrorAction SilentlyContinue | Select-Object -Last 1) }
+        Remove-Job $j -Force
+        $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","Machine") + ";" +
+                    [System.Environment]::GetEnvironmentVariable("PATH","User")
         if (Have nmap) { Ok "nmap installed"; $installed += "nmap" }
         else { Warn "nmap installed but not on PATH - reopen your shell"; $installed += "nmap" }
     } catch {
@@ -330,8 +358,8 @@ if ($SkipShim) {
 
 # --- 6. wait on the background jobs ------------------------------------------
 if ($ollamaJob) {
-    Info "Waiting for the $Model pull to finish"
-    Wait-Job $ollamaJob | Out-Null
+    Info "Waiting for the $Model pull to finish (multi-GB - this is normal)"
+    Wait-WithHeartbeat $ollamaJob "pulling $Model" | Out-Null
     if ($ollamaJob.State -eq 'Completed') { Ok "Model $Model pulled"; $installed += "model $Model" }
     else {
         Failm "Model pull failed"
@@ -342,7 +370,7 @@ if ($ollamaJob) {
 }
 if ($cacheJob) {
     Info "Waiting for the CVE cache download to finish"
-    Wait-Job $cacheJob | Out-Null
+    Wait-WithHeartbeat $cacheJob "downloading + unpacking the CVE cache" | Out-Null
     if ($cacheJob.State -eq 'Completed' -and (Test-Path $cacheDb)) {
         Ok "CVE cache ready"; $installed += "CVE cache"
     } else {
