@@ -1,0 +1,7 @@
+# Enterprise/-scoped dependencies for the office one-button audit coordinator.
+# Deliberately NOT merged into the root requirements.txt: Layer 2's credentialed
+# reach-in transport (Enterprise/core/remote_exec.py) is the only thing in this
+# repo that needs SSH/WinRM client libraries, and per office-audit-plan.txt
+# (line 16) nothing outside Enterprise/ should be touched by this work.
+paramiko
+pywinrm

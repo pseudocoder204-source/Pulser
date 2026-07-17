@@ -1,0 +1,217 @@
+================================================================================
+Pulser -> Office One-Button Audit (+ future Guardian)
+================================================================================
+
+CONTEXT
+--------------------------------------------------------------------------------
+Pulser (mark2) is today a one-shot single-target scanner: `python3 agent.py`
+runs a fixed DAG (scope_gate -> scan_phase -> enrich -> drift -> intel -> triage
+-> persist -> report -> END) against one host and exits. The goal is to let a
+boss run ONE command on his own machine and get an office-wide security snapshot
+-- malware, vulns, and network exposure -- across 30-40 mixed-OS
+(Windows/Linux/macOS) laptops and PCs, with ZERO software installed on any other
+machine.
+
+
+**NOTE: DO NOT MODIFY EXISTING FILES OUTSIDE OF THE ENTERPRISE FOLDER, BUILD WRAPPERS AND ALL RELATED SCRIPTS TO THIS PLAN IN THE ENTERPRISE FOLDER SO THE WORKFLOW/CODE OUTSIDE DOES NOT GET MODIFIED/DISRUPTED
+
+Decisions:
+  - Zero install on endpoints; one-time install on the coordinator only; one
+    command.
+  - Plain laptops/PCs only for now -- IoT and mobile explicitly OUT OF SCOPE
+    (the continuous IoT "guardian" is deferred to a future extension of the same
+    layer, not built now).
+  - Hybrid, graceful-degradation coverage (chosen): every host is
+    network-scanned (always works, zero-touch); where a host is reachable over
+    its built-in remote-admin channel WITH a supplied credential, it ALSO gets
+    malware/patch/hardening. Per-host coverage is labeled.
+  - Trust = existing OS credentials (no custom enrollment/PKI). WinRM
+    (Kerberos/NTLM) for Windows, SSH key/login for Linux/macOS. The credential
+    is the proof.
+
+The hard physics that shapes everything:
+  Three of the five scanners are LOCAL-ONLY -- they read state not exposed on the
+  network: scan_filesystem (Trivy), audit_host (Lynis / Windows audit),
+  scan_malware (ClamAV / Defender). The other two are NETWORK-SIDE:
+  scan_network/scan_iot_defaults (nmap) and scan_web (nuclei). Therefore "see
+  malware/patch/hardening" is IMPOSSIBLE from a pure network scan -- it needs
+  something running ON the target. With agents ruled out, the only way to get
+  that coverage without a persistent install is CREDENTIALED AGENTLESS REACH-IN:
+  the coordinator opens the target's own WinRM/SSH channel, runs native checks,
+  collects output, and leaves nothing behind (the standard
+  Nessus/OpenVAS/Defender-agentless model). Consequence, plainly:
+  zero-touch + zero-credential  =>  network-visible findings only.
+  The hybrid design embraces this -- network scan is the always-on floor;
+  credentialed reach-in is the per-host bonus.
+
+
+ARCHITECTURE (office one-button audit)
+--------------------------------------------------------------------------------
+  +---------------------------------------------------------------+
+  |  Coordinator (one install on the boss's PC; one command)      |
+  |                                                               |
+  |  operator confirms office CIDR + (optional) creds  -- once    |
+  |        |  scope_gate HMAC bounds the sweep to that CIDR       |
+  |        v                                                      |
+  |  discover_hosts(CIDR)  -->  fleet inventory (MAC-keyed)       |
+  |        |                                                      |
+  |        v   bounded worker pool, per host, timeouts            |
+  |  +-------------- per host --------------+                     |
+  |  | NETWORK track (always, zero-touch):  |  nmap + nuclei  ----+--> target PC
+  |  |   scan_network + scan_web            |  from coordinator   |   (network probe)
+  |  |                                      |                     |
+  |  | CREDENTIALED track (if reachable +   |  WinRM (Win) /  ----+--> target PC
+  |  |   cred): remote-run native host      |  SSH (Lin/mac)      |   (auth reach-in,
+  |  |   checks, feed EXISTING parsers,     |                     |    nothing left)
+  |  |   collect -> per-host coverage label |                     |
+  |  +--------------------------------------+                     |
+  |        v                                                      |
+  |  aggregate -> findings table (host-keyed) -> drift -> triage  |
+  |        v                                                      |
+  |  ONE office report + per-host breakdown  (LLM report-only,    |
+  |  deterministic fallback intact)                               |
+  +---------------------------------------------------------------+
+
+Key reuse insight: the local scanners are all shaped run_* -> parse_* ->
+build_*. Only the run_* step is a LOCAL SUBPROCESS; the parse_*/build_* steps
+consume text/JSON and are TRANSPORT-AGNOSTIC. Swap the executor (local
+subprocess -> remote SSH/WinRM) and the existing parsers are reused verbatim.
+This is especially clean on Windows: windows_audit_parser and
+windows_defender_parser already run a batched PowerShell payload that emits JSON
+-- that same payload runs over WinRM with NO install, because
+Defender/CIM/Windows-Update are native to Windows. On Linux/macOS, native
+package-manager/patch queries run over SSH the same way; deeper malware scanning
+(Trivy/ClamAV not natively present) degrades gracefully to "network-only for
+this host" unless a throwaway binary is pushed -- flagged, not assumed.
+
+
+IMPLEMENTATION PLAN
+--------------------------------------------------------------------------------
+Layer 0 -- Scope + coordinator entry point
+  - New --office-audit mode (and office/coordinator.py). Operator supplies the
+    office CIDR once and optional per-OS credentials (SSH key/agent, WinRM login,
+    or "none" for network-only).
+  - Generalize resolve_scope/verify_scope_token (agent.py:121-156) from a single
+    target to ENROLLED-CIDR CONTAINMENT: a per-host token is minted only if the
+    host IP is inside the confirmed CIDR. Every discovered host is checked
+    against it -- this is the guard that keeps the coordinator from ever scanning
+    off-network. No new trust system; this HMAC gate already exists.
+
+Layer 1 -- Fleet enumeration
+  - Reuse tools.discover_hosts (nmap -sn, MAC-keyed) to build the inventory.
+    This is the very caller the current spine deliberately omits discover_hosts
+    for. Add lightweight per-host OS fingerprinting (nmap service/OS detection
+    already available) to pick WinRM vs SSH for the credentialed track.
+
+Layer 2 -- Remote-exec transport (the one genuinely new capability)
+  - New core/remote_exec.py:
+      run_remote(host, os_kind, cred, command, timeout) -> (stdout, status)
+    over SSH (paramiko or an `ssh` subprocess) and WinRM (pywinrm). Mirror
+    run_nmap's hard-timeout + graceful-failure discipline (DEFAULT_NMAP_TIMEOUT,
+    the per-worker try/except that downgrades to {"status": "error"}), so one
+    unreachable/slow host never blocks the button.
+  - Refactor the local scanners' run_* step to accept an EXECUTOR (local
+    subprocess = today's behavior; remote = new). parse_*/build_* are untouched.
+    Priority target: the two Windows PowerShell parsers
+    (scanners/windows/windows_audit_parser.py, windows_defender_parser.py) --
+    their JSON-over-shell contract is ideal for WinRM and gives the richest
+    zero-install coverage.
+
+Layer 3 -- Aggregation across hosts
+  - Add a HOST dimension to the findings table. build_findings_table (in
+    agent.py) today flattens one host's worker outputs into refs+severity tiers;
+    extend it to tag each finding with its source host and merge many hosts into
+    one office-wide table (stable refs preserved).
+  - Extend the load-bearing scanner_status_map (agent.py:221-238) to a per-host
+    x per-scanner COVERAGE MATRIX. Critical, not cosmetic: a host with no
+    credentialed track must report malware as "not assessed", never "clean" --
+    the same rule that stops a skipped scanner being read as "fixed".
+  - Concurrency: bounded worker pool for 30-40 hosts, staggered, per-host
+    timeout; aggregate partial results. The button always produces a report even
+    if some hosts are down.
+
+Layer 4 -- Drift, triage, report (mostly free)
+  - scan_log.db's finding_state is already keyed by (target, finding_key), so
+    per-PC baselines and drift come FOR FREE -- a second office audit shows
+    NEW/WORSENED/RESOLVED per machine rather than duplicate findings
+    (core/drift.py, unchanged). Persist per-host + an office-wide risk trend.
+  - priority.rank and run_report (agent.py:956-1004) are reused: one office-wide
+    report plus a per-host breakdown. LLM stays REPORT-ONLY and periodic;
+    _deterministic_report fallback keeps the button working with Ollama down.
+
+Deferred (clean seams, not built now)
+  - Continuous IoT/mobile guardian (agentless, monitor-only, scheduled sweeps +
+    drift alerts) -- same coordinator/fleet/report layer, different collector
+    cadence. Documented as the next step.
+  - Any enforcement/blocking/quarantine (needs inline position + router control).
+  - Pushing throwaway scanner binaries for deep Linux/macOS malware coverage
+    (only if native-query coverage proves insufficient).
+  - Opt-in lightweight installer for COMPANY-OWNED laptops only (not BYOD/home
+    machines): a small one-time setup script an employee/IT runs once, which
+    drops a minimal subagent that reports findings back to the coordinator on
+    its own (push, not credentialed reach-in). Motivation: mixed-OS fleets with
+    no central AD/MDM enrollment and BYOD "same laptop at home and office" mean
+    a single shared SSH key / WinRM login can't reach every machine, and the
+    zero-install credentialed track (Layer 2) will correctly degrade those
+    hosts to network-only findings. This installer is the escape hatch for
+    machines the company actually owns and wants full coverage on, WITHOUT
+    changing the zero-install default for everything else. Explicitly opt-in
+    and out of scope for Layers 0-4 as written -- revisit only once the
+    credentialed-reach-in track (Layer 2) is built and its real BYOD/AD-less
+    coverage gaps are measured, not assumed.
+
+
+CRITICAL FILES
+--------------------------------------------------------------------------------
+  agent.py:121-156 (resolve_scope/verify_scope_token)
+      Generalize single-target -> enrolled-CIDR containment.
+  core/tools.py (discover_hosts)
+      Fleet enumeration (MAC-keyed).
+  core/remote_exec.py (NEW)
+      SSH/WinRM transport -- the one new capability.
+  scanners/windows/windows_audit_parser.py, windows_defender_parser.py
+      JSON-over-PowerShell -> run over WinRM unchanged; richest zero-install
+      coverage.
+  scanners/*/**_parser.py (run_* steps)
+      Refactor to accept a local-or-remote executor; parsers reused verbatim.
+  agent.py (build_findings_table, scanner_status_map @ agent.py:221)
+      Add host dimension + per-host x scanner coverage matrix.
+  core/drift.py, core/scan_log_db.py
+      Per-host baselines/drift already free (keyed by (target, finding_key)).
+  office/coordinator.py (NEW)
+      The one-button fan-out + aggregation driver.
+  systemd/mark2-clamav-scan.*
+      Reference for the future scheduled-guardian mode.
+
+
+VERIFICATION (most hassle-free path)
+--------------------------------------------------------------------------------
+  1. Two transports first, minimal. On a VirtualBox HOST-ONLY network (the repo
+     already assumes this for nuclei), stand up one Linux VM (SSH) + the
+     coordinator, plus optionally one Windows VM (WinRM). Point --office-audit at
+     that /24.
+  2. Prove the hybrid ladder: confirm every host returns network findings
+     (nmap/nuclei) with NO credentials; then supply an SSH key / WinRM login for
+     one host and confirm it ADDITIONALLY returns malware/patch/hardening, and
+     that the per-host coverage matrix labels the credential-less hosts as "not
+     assessed" (never "clean").
+  3. Scale + resilience: include one deliberately-offline IP in the CIDR; confirm
+     the button still completes, that host is marked unreachable, and no scanning
+     occurs outside the enrolled CIDR (assert ScopeError on an out-of-range IP;
+     inspect logs).
+  4. Drift: run the audit twice with a change introduced on one host between runs
+     (open a port / start a vulnerable service); confirm exactly that host shows
+     NEW/WORSENED and others show PERSISTING -- via `python3 agent.py
+     --history/--diff` against scan_log.db.
+  5. Report degradation: kill Ollama and re-run; confirm _deterministic_report
+     produces the office report instead of failing.
+
+
+SOURCES (industry grounding)
+--------------------------------------------------------------------------------
+  - Firewalla -- local processing / zero-trust architecture:
+    https://help.firewalla.com/hc/en-us/articles/36325500638739-A-Secure-and-Better-Network-with-Firewalla-Part-4-Zero-Trust-Network-Architecture
+  - Microsoft Defender for IoT -- agentless network architecture:
+    https://learn.microsoft.com/en-us/azure/defender-for-iot/organizations/best-practices/understand-network-architecture
+  - Vectra AI -- agentless IoT/network traffic analysis:
+    https://www.vectra.ai/topics/iot-security
