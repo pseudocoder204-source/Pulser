@@ -381,7 +381,7 @@ and consent before scanning.
 
 ## Team
 
-**Aditya Soni — Founder, Sole Architect & Engineer.** I conceived this project and built
+**Aditya Soni — Founder, Lead Architect & Engineer.** I conceived this project and built
 the entire codebase from scratch myself. 
 
 **Andrew Macedo — Outreach & Community Partner.** Andrew, my high school friend handles outreach and the
