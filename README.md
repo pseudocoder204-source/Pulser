@@ -24,6 +24,10 @@ order, flattens all findings into a single table, and uses an LLM **only** to re
 explain those findings rather than choosing what to scan. See `CLAUDE.md` for the full
 architecture.
 
+> **Note:** Built for personal use — point it at your own devices/network (default target is
+> `127.0.0.1`). It's meant to be a health checkup for your own stuff, not a tool for
+> scanning things that aren't yours.
+
 ![Pulser demo](docs/demo.gif)
 
 ## Why I built this
