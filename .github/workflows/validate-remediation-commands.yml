@@ -1,0 +1,41 @@
+name: Validate remediation command templates
+
+# AST/allowlist check over core/remediation.py's REMEDIATION_CATALOG
+# commands_template fields (notes/RemediationRAGPlan.txt "AST-validated CI
+# check over commands_template"). This is the safety net against a hand-edit
+# to core/remediation.py that adds or changes a command outside the reviewed
+# offline RAG authoring pipeline -- see finetune/command_ast_validate.py.
+on:
+  push:
+    paths:
+      - "core/remediation.py"
+      - "finetune/command_ast_validate.py"
+      - "tests/test_command_templates.py"
+  pull_request:
+    paths:
+      - "core/remediation.py"
+      - "finetune/command_ast_validate.py"
+      - "tests/test_command_templates.py"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ubuntu-latest ships pwsh preinstalled, which is what gives the
+      # PowerShell command_shell path a real AST parse (not just the
+      # cmdlet-allowlist check) -- see _pwsh_available() in the validator.
+      - name: Confirm pwsh is available
+        run: pwsh -NoProfile -Command '$PSVersionTable.PSVersion'
+
+      - name: Run validator unit tests
+        run: python3 -m unittest tests.test_command_templates -v
+
+      - name: Validate REMEDIATION_CATALOG commands_template entries
+        run: python3 finetune/command_ast_validate.py

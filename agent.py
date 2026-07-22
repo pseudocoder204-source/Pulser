@@ -100,6 +100,7 @@ from langgraph.graph import END, StateGraph
 from core import drift as drift_engine
 from core import exploit_intel
 from core import priority
+from core import remediation
 from core import tools
 from core.scan_log_db import (
     STATUS_OPEN,
@@ -267,6 +268,19 @@ def run_scan_phase(target: str, scope_token: str) -> Dict[str, Any]:
 _TIER_RANK = {"critical": 3, "high": 2, "medium": 1, "low": 0}
 
 
+def _escalate_for_default_creds(row: Dict[str, Any]) -> None:
+    """Bump a finding's own severity to 'critical' when its script_findings show
+    factory-default credentials exposed (priority.has_default_creds_finding) — CVSS-based
+    _severity_bucket has no way to know this from cvss alone, since these findings
+    typically carry no CVE/CVSS at all. Without this, the finding's severity stays
+    'low', so it gets routed to good_news ("looks fine") in the very same report whose
+    overall_risk is separately escalated to 'critical' by priority.overall_risk_tier
+    for this exact signal — a self-contradictory report. Mutates in place so it can be
+    called again after script_findings is merged in later (the port-dedup path)."""
+    if row.get("severity") != "critical" and priority.has_default_creds_finding(row):
+        row["severity"] = "critical"
+
+
 def _severity_bucket(cvss: float) -> str:
     if cvss >= 9:
         return "critical"
@@ -360,6 +374,7 @@ def build_findings_table(results: Dict[str, Any]) -> List[Dict[str, Any]]:
                 existing = table[seen_ports[port]]
                 if not existing.get("script_findings") and rec.get("script_findings"):
                     existing["script_findings"] = rec.get("script_findings")
+                    _escalate_for_default_creds(existing)
                 continue
 
             cvss = (rec.get("risk_metrics") or {}).get("max_cvss_score") or 0.0
@@ -377,6 +392,8 @@ def build_findings_table(results: Dict[str, Any]) -> List[Dict[str, Any]]:
                 "affected": affected.strip(),
                 "cpe": rec.get("cpe"),
                 "version": rec.get("version"),
+                "port": rec.get("port"),
+                "service": rec.get("service"),
                 "cvss": cvss,
                 "severity": _severity_bucket(cvss),
                 "cve_ids": cve_ids,
@@ -384,6 +401,7 @@ def build_findings_table(results: Dict[str, Any]) -> List[Dict[str, Any]]:
                 "remediation_refs": rec.get("verified_patch_urls") or [],
                 "script_findings": rec.get("script_findings"),
             })
+            _escalate_for_default_creds(table[-1])
             if port is not None:
                 seen_ports[port] = len(table) - 1
             ref += 1
@@ -500,6 +518,9 @@ def build_findings_table(results: Dict[str, Any]) -> List[Dict[str, Any]]:
             })
             ref += 1
 
+    for row in table:
+        row["fix_facts"] = remediation.fix_facts_for(row)
+
     return table
 
 
@@ -538,6 +559,14 @@ You are given a JSON array of already-verified findings in priority order. Each 
 already has an "affected" string and a "severity" tier computed for you — do not change \
 severity, and do not invent any fact not present in the data you were given.
 
+Some findings also carry a "fix_facts" object — pre-verified remediation facts (a fix \
+summary, ordered steps, and sometimes a "fixed_version" or "solution") already grounded \
+in this finding's own data. When "fix_facts" is present, build "how_to_fix" from it: turn \
+its "steps" into your numbered steps, and if it has a "fixed_version" your steps must \
+state that version. When "fix_facts" is null or absent, give only safe generic advice \
+(update the software / disable the feature / restrict network access) and make clear in \
+"how_to_fix" that a specific fix wasn't identified for this item.
+
 FINAL REPORT — respond with ONLY this JSON object (no prose, no markdown fences):
 {
   "overall_risk": "<low|medium|high|critical>",
@@ -561,6 +590,9 @@ CRITICAL RULES:
 Translate everything to everyday language instead.
 - "severity" in each finding must match the severity you were given for that finding.
 - "affected" must be copied from the input data, not invented.
+- "how_to_fix" must be built from that finding's "fix_facts" when present (state the \
+"fixed_version" if given); if "fix_facts" is null, say plainly that a specific fix \
+wasn't identified and give only safe generic advice.
 - Output ONLY the JSON object. No text before or after it.
 """
 
@@ -605,32 +637,52 @@ def _validate_report_severities(report: Dict[str, Any], table: List[Dict[str, An
     return True
 
 
+def _how_to_fix_from_facts(fix_facts: Optional[Dict[str, Any]]) -> Optional[str]:
+    """Render a fix_facts dict (core/remediation.fix_facts_for) as numbered steps.
+    Returns None when there's nothing grounded to build from — the caller falls back
+    to safe generic advice rather than inventing specifics."""
+    if not fix_facts:
+        return None
+    steps = fix_facts.get("steps")
+    if steps:
+        return "\n".join(f"{i}. {s}" for i, s in enumerate(steps, 1))
+    summary = fix_facts.get("fix_summary")
+    if summary:
+        return f"1. {summary}"
+    return None
+
+
 def _deterministic_report(table: List[Dict[str, Any]], order: List[int]) -> Dict[str, Any]:
     """Pure-Python fallback report — no LLM, built directly from the findings table.
     Ships only if the LLM report fails literal-validation twice in a row."""
     by_ref = {f["ref"]: f for f in table}
+    reported = [by_ref[ref] for ref in order]
     findings = []
     good_news = []
-    worst_tier = 0
 
-    for ref in order:
-        f = by_ref[ref]
-        worst_tier = max(worst_tier, _TIER_RANK.get(f["severity"], 0))
+    for f in reported:
         if f["severity"] == "low":
             good_news.append(f"{f['affected']} looks fine — no significant issues found.")
             continue
         refs = [r for r in f.get("remediation_refs", []) if isinstance(r, str) and r.startswith("http")]
+        for r in (f.get("fix_facts") or {}).get("references", []):
+            if isinstance(r, str) and r.startswith("http") and r not in refs:
+                refs.append(r)
+        how_to_fix = _how_to_fix_from_facts(f.get("fix_facts")) or (
+            "1. Update or patch the affected software/setting to the latest version.\n"
+            "2. If no update is available, disable or restrict access to the affected service."
+        )
         findings.append({
             "title": f"Issue detected: {f['affected']}",
             "severity": f["severity"],
             "what_it_means": f["description"] or "This item was flagged during the scan as a potential security risk.",
             "why_it_matters": "An attacker could use this weakness to gain access or disrupt the affected system.",
-            "how_to_fix": "1. Update or patch the affected software/setting to the latest version.\n2. If no update is available, disable or restrict access to the affected service.",
+            "how_to_fix": how_to_fix,
             "affected": f["affected"],
             "references": refs,
         })
 
-    overall = {3: "critical", 2: "high", 1: "medium", 0: "low"}[worst_tier]
+    overall = priority.overall_risk_tier(reported, db_path=_vuln_cache_db_path())
     return {
         "overall_risk": overall,
         "summary": f"The scan found {len(findings)} issue(s) that need attention out of {len(table)} item(s) reviewed.",
@@ -688,17 +740,19 @@ def run_report(llm, table: List[Dict[str, Any]], order: List[int]) -> Dict[str, 
 
     findings: List[Dict[str, Any]] = []
     good_news: List[str] = []
-    worst_tier = 0
     for i, chunk in enumerate(chunks):
         print(f"[report] generating chunk {i + 1}/{len(chunks)} ({len(chunk)} finding(s))...", file=sys.stderr)
         chunk_report = _run_report_chunk(llm, chunk)
         findings.extend(chunk_report.get("findings", []))
         good_news.extend(chunk_report.get("good_news", []))
-        worst_tier = max(worst_tier, _TIER_RANK.get(str(chunk_report.get("overall_risk", "low")).lower(), 0))
 
     # Stitched deterministically rather than with one more LLM call over the
     # already-generated chunk summaries — keeps the merge itself failure-proof.
-    overall = {3: "critical", 2: "high", 1: "medium", 0: "low"}[worst_tier]
+    # Computed over the *full* ordered_facts set, not merged from each chunk's own
+    # overall_risk: an escalation (malware, KEV, 3+ highs) can span chunks — e.g. one
+    # malware finding in chunk 1 and two more highs in chunk 2 — and a per-chunk-only
+    # view would never see the combination that triage would flag as FIX NOW.
+    overall = priority.overall_risk_tier(ordered_facts, db_path=_vuln_cache_db_path())
     summary = f"The scan found {len(findings)} issue(s) that need attention out of {len(ordered_facts)} item(s) reviewed."
     return {"overall_risk": overall, "summary": summary, "findings": findings, "good_news": good_news}
 

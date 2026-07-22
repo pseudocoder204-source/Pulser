@@ -1,0 +1,6273 @@
+{
+  "tier_preference": [
+    "standard",
+    "basic"
+  ],
+  "products_used": [
+    {
+      "product": "alinux2",
+      "tier": "standard"
+    },
+    {
+      "product": "alinux3",
+      "tier": "standard"
+    },
+    {
+      "product": "almalinux9",
+      "tier": "standard"
+    },
+    {
+      "product": "anolis23",
+      "tier": "standard"
+    },
+    {
+      "product": "anolis8",
+      "tier": "standard"
+    },
+    {
+      "product": "debian11",
+      "tier": "standard"
+    },
+    {
+      "product": "debian12",
+      "tier": "standard"
+    },
+    {
+      "product": "debian13",
+      "tier": "standard"
+    },
+    {
+      "product": "fedora",
+      "tier": "standard"
+    },
+    {
+      "product": "kylinsecserver6",
+      "tier": "standard"
+    },
+    {
+      "product": "kylinserver10",
+      "tier": "standard"
+    },
+    {
+      "product": "ol7",
+      "tier": "standard"
+    },
+    {
+      "product": "ol8",
+      "tier": "standard"
+    },
+    {
+      "product": "ol9",
+      "tier": "standard"
+    },
+    {
+      "product": "openembedded",
+      "tier": "standard"
+    },
+    {
+      "product": "openeuler2203",
+      "tier": "standard"
+    },
+    {
+      "product": "opensuse",
+      "tier": "standard"
+    },
+    {
+      "product": "rhel8",
+      "tier": "standard"
+    },
+    {
+      "product": "sle12",
+      "tier": "standard"
+    },
+    {
+      "product": "sle15",
+      "tier": "standard"
+    },
+    {
+      "product": "tencentos4",
+      "tier": "standard"
+    },
+    {
+      "product": "ubuntu2204",
+      "tier": "standard"
+    }
+  ],
+  "products_skipped": [
+    "al2023",
+    "eks",
+    "example",
+    "firefox",
+    "hummingbird",
+    "ocp4",
+    "ol10",
+    "rhcos4",
+    "rhel10",
+    "rhel9",
+    "rhv4",
+    "sle16",
+    "slmicro5",
+    "slmicro6",
+    "ubuntu2404",
+    "ubuntu2604"
+  ],
+  "group_selections_ignored": 0,
+  "allowed_rule_ids": {
+    "account_disable_post_pw_expiration": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "account_unique_id": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "account_unique_name": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "accounts_have_homedir_login_defs": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "accounts_logon_fail_delay": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "accounts_max_concurrent_login_sessions": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "accounts_maximum_age_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "accounts_minimum_age_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "accounts_no_uid_except_zero": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_all_shadowed": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_minlen_login_defs": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_pam_minclass": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_pam_minlen": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_pam_pwhistory_remember_password_auth": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_pam_pwhistory_remember_system_auth": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_pam_retry": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_set_max_life_existing": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_set_min_life_existing": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_password_warn_age_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "accounts_root_gid_zero": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_root_path_dirs_no_write": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "accounts_tmout": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "accounts_umask_etc_bashrc": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "accounts_umask_etc_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "accounts_umask_etc_profile": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "accounts_users_own_home_directories": [
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "aide_build_database": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "aide_periodic_cron_checking": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_chmod": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_chown": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_fchmod": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_fchmodat": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_fchown": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_fchownat": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_fremovexattr": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_fsetxattr": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_lchown": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_lremovexattr": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_lsetxattr": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_removexattr": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_dac_modification_setxattr": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_file_deletion_events": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_file_deletion_events_rmdir": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_file_deletion_events_unlink": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_file_deletion_events_unlinkat": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_immutable": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_kernel_module_loading": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_kernel_module_loading_finit": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_kernel_module_loading_init": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_login_events": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_mac_modification": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_media_export": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_networkconfig_modification": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_at": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_chage": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_chsh": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_crontab": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_gpasswd": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_mount": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_newgrp": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_pam_timestamp_check": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_passwd": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_postdrop": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_postqueue": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_ssh_keysign": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_su": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_sudo": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_sudoedit": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_umount": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_unix_chkpwd": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_userhelper": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_privileged_commands_usernetctl": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_session_events": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_successful_file_modification_chmod": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_sysadmin_actions": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_time_adjtimex": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_time_clock_settime": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_time_settimeofday": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_time_stime": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_time_watch_localtime": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_unsuccessful_file_modification": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "audit_rules_usergroup_modification": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "auditd_audispd_syslog_plugin_activated": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "auditd_data_retention_action_mail_acct": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "auditd_data_retention_admin_space_left_action": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "auditd_data_retention_max_log_file": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "auditd_data_retention_max_log_file_action": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "auditd_data_retention_num_logs": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "auditd_data_retention_space_left_action": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "banner_etc_issue": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "banner_etc_motd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "chronyd_or_ntpd_specify_remote_server": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "configure_bind_crypto_policy": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "configure_crypto_policy": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "configure_kerberos_crypto_policy": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "configure_libreswan_crypto_policy": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "configure_openssl_crypto_policy": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "configure_ssh_crypto_policy": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "coredump_disable_backtraces": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "coredump_disable_storage": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "dir_perms_world_writable_sticky_bits": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "disable_host_auth": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "disable_users_coredumps": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "display_login_attempts": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "ensure_almalinux_gpgkey_installed": [
+      {
+        "product": "almalinux9",
+        "tier": "standard"
+      }
+    ],
+    "ensure_gpgcheck_globally_activated": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "almalinux9",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "ensure_gpgcheck_never_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "almalinux9",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "ensure_logrotate_activated": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "ensure_oracle_gpgkey_installed": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      }
+    ],
+    "ensure_redhat_gpgkey_installed": [
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_at_deny_not_exist": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_cron_deny_not_exist": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_group_ownership_var_log_audit": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_at_allow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_backup_etc_group": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_backup_etc_gshadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_backup_etc_passwd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_backup_etc_shadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_cron_allow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_cron_d": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_cron_daily": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_cron_hourly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_cron_monthly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_cron_weekly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_crontab": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_efi_grub2_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_efi_user_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_etc_group": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_etc_gshadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_etc_issue": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_etc_motd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_etc_passwd": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "opensuse",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle12",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_etc_shadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_grub2_cfg": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_sshd_config": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_groupowner_user_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_groupownership_home_directories": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_at_allow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_backup_etc_group": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_backup_etc_gshadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_backup_etc_passwd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_backup_etc_shadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_cron_allow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_cron_d": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_cron_daily": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_cron_hourly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_cron_monthly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_cron_weekly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_crontab": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_efi_grub2_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_efi_user_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_etc_group": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_etc_gshadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_etc_issue": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_etc_motd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_etc_passwd": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "opensuse",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle12",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_etc_shadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_grub2_cfg": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_sshd_config": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_owner_user_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_ownership_binary_dirs": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "file_ownership_home_directories": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_ownership_library_dirs": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "file_ownership_var_log_audit": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_at_allow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_backup_etc_group": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_backup_etc_gshadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_backup_etc_passwd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_backup_etc_shadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_binary_dirs": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_cron_allow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_cron_d": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_cron_daily": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_cron_hourly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_cron_monthly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_cron_weekly": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_crontab": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_efi_grub2_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_efi_user_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_etc_group": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_etc_gshadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_etc_issue": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_etc_motd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_etc_passwd": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "opensuse",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle12",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_etc_shadow": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_grub2_cfg": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_library_dirs": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_sshd_config": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_sshd_private_key": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_sshd_pub_key": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_systemmap": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_unauthorized_sgid": [
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_unauthorized_suid": [
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_unauthorized_world_writable": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_ungroupowned": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "file_permissions_user_cfg": [
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "gid_passwd_group_same": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "group_unique_id": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "group_unique_name": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "grub2_audit_argument": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "grub2_nousb_argument": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "grub2_password": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "inactivity_timeout_value": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "installed_OS_is_vendor_supported": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "journald_compress": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "journald_forward_to_syslog": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "journald_storage": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "kernel_module_dccp_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "kernel_module_sctp_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "login_banner_contents": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "login_banner_text": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "motd_banner_contents": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "motd_banner_text": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "mount_option_dev_shm_nodev": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "mount_option_dev_shm_nosuid": [
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "no_direct_root_logins": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "no_empty_passwords": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "no_netrc_files": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "no_rsh_trust_files": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "no_shelllogin_for_systemaccounts": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "package_aide_installed": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "package_audit_installed": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_cron_installed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_firewalld_installed": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "package_httpd_removed": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "package_inetutils-telnetd_removed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_iptables_installed": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "package_nis_removed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_ntp_installed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "package_ntpdate_removed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_openldap-clients_removed": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      }
+    ],
+    "package_openssh_installed": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "package_rsyslog_installed": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_telnetd-ssl_removed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_telnetd_removed": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "package_timesyncd_installed": [
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "partition_for_home": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "partition_for_tmp": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "partition_for_var": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "partition_for_var_log": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "partition_for_var_log_audit": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "require_emergency_target_auth": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "require_singleuser_auth": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "restrict_serial_port_logins": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "root_path_no_dot": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "rpm_verify_hashes": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "rpm_verify_permissions": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "almalinux9",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "rsyslog_files_groupownership": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "rsyslog_files_ownership": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "rsyslog_files_permissions": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "rsyslog_remote_loghost": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "securetty_root_login_console_only": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "security_patches_up_to_date": [
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "almalinux9",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "service_abrtd_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_apport_disabled": [
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "service_atd_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_auditd_enabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "service_autofs_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_avahi-daemon_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_chronyd_or_ntpd_enabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "service_cron_enabled": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "service_crond_enabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_cups_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_dhcpd_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_dovecot_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_firewalld_enabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_httpd_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "service_named_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_nfs_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_ntp_enabled": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "service_ntpdate_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_oddjobd_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_qpidd_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_rdisc_disabled": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "alinux3",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      }
+    ],
+    "service_rpcbind_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_rsyncd_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_rsyslog_enabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "ol7",
+        "tier": "standard"
+      },
+      {
+        "product": "ol8",
+        "tier": "standard"
+      },
+      {
+        "product": "ol9",
+        "tier": "standard"
+      },
+      {
+        "product": "rhel8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "service_slapd_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_smb_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_snmpd_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_squid_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_sshd_enabled": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "service_timesyncd_enabled": [
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "service_vsftpd_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "service_ypserv_disabled": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "set_firewalld_default_zone": [
+      {
+        "product": "alinux2",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "set_password_hashing_algorithm_systemauth": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_allow_only_protocol2": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sshd_disable_empty_passwords": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sshd_disable_rhosts": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_disable_root_login": [
+      {
+        "product": "almalinux9",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sshd_do_not_permit_user_env": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_enable_pam": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_enable_warning_banner": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_enable_x11_forwarding": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sshd_idle_timeout_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sshd_max_auth_tries_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_idle_timeout": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_keepalive": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_keepalive_0": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_login_grace_time": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_loglevel_info": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_loglevel_verbose": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_max_auth_tries": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_max_sessions": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sshd_set_maxstartups": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "std_kylinsecserver6:all:l1_server": [
+      {
+        "product": "kylinsecserver6",
+        "tier": "standard"
+      }
+    ],
+    "std_kylinsecserver6:all:l2_server": [
+      {
+        "product": "kylinsecserver6",
+        "tier": "standard"
+      }
+    ],
+    "std_kylinserver10:all:l1_server": [
+      {
+        "product": "kylinserver10",
+        "tier": "standard"
+      }
+    ],
+    "std_kylinserver10:all:l2_server": [
+      {
+        "product": "kylinserver10",
+        "tier": "standard"
+      }
+    ],
+    "std_openeuler2203:all:l2_server": [
+      {
+        "product": "openeuler2203",
+        "tier": "standard"
+      }
+    ],
+    "std_tencentos4:all:l2_server": [
+      {
+        "product": "tencentos4",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_fs_protected_hardlinks": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_fs_protected_symlinks": [
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_fs_suid_dumpable": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_kernel_dmesg_restrict": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_kernel_randomize_va_space": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_accept_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_accept_redirects_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_accept_source_route": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_accept_source_route_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_log_martians": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_log_martians_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_rp_filter": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_rp_filter_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_secure_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_secure_redirects_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_all_send_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_accept_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_accept_redirects_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_accept_source_route": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_accept_source_route_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_log_martians": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_log_martians_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_rp_filter": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_rp_filter_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_secure_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_secure_redirects_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_conf_default_send_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_icmp_echo_ignore_broadcasts": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_icmp_echo_ignore_broadcasts_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_icmp_ignore_bogus_error_responses": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_icmp_ignore_bogus_error_responses_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_ip_forward": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_tcp_invalid_ratelimit": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_tcp_syncookies": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv4_tcp_syncookies_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_accept_ra": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_accept_ra_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_accept_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_accept_redirects_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_accept_source_route": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_accept_source_route_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_forwarding": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_all_forwarding_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_default_accept_ra": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_default_accept_ra_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_default_accept_redirects": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_default_accept_redirects_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_default_accept_source_route": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "sysctl_net_ipv6_conf_default_accept_source_route_value": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "use_pam_wheel_for_su": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_account_disable_post_pw_expiration": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_fail_delay": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_maximum_age_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_minimum_age_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_password_warn_age_login_defs": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "fedora",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_passwords_pam_faillock_fail_interval": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_passwords_pam_faillock_unlock_time": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_tmout": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_accounts_user_umask": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "var_auditd_num_logs": [
+      {
+        "product": "fedora",
+        "tier": "standard"
+      }
+    ],
+    "var_password_pam_minclass": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_password_pam_minlen": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_password_pam_remember": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_password_pam_remember_control_flag": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_password_pam_retry": [
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "var_sshd_max_sessions": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      }
+    ],
+    "var_sshd_set_keepalive": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "debian11",
+        "tier": "standard"
+      },
+      {
+        "product": "debian12",
+        "tier": "standard"
+      },
+      {
+        "product": "debian13",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      },
+      {
+        "product": "sle15",
+        "tier": "standard"
+      },
+      {
+        "product": "ubuntu2204",
+        "tier": "standard"
+      }
+    ],
+    "var_sshd_set_login_grace_time": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_sshd_set_maxstartups": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ],
+    "var_system_crypto_policy": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      }
+    ],
+    "wireless_disable_interfaces": [
+      {
+        "product": "anolis23",
+        "tier": "standard"
+      },
+      {
+        "product": "anolis8",
+        "tier": "standard"
+      },
+      {
+        "product": "openembedded",
+        "tier": "standard"
+      }
+    ]
+  }
+}

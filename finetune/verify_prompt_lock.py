@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 LOCK_FILE = Path(__file__).parent / "report_prompt.lock.txt"
-LOCKED_SHA256 = "b3cc137fa2932f72b3741f91035590caab08cbfa978b0e1ac31479a1c2032911"
+LOCKED_SHA256 = "7d0c580fc17c80b5a35a65bd16a4e3397672b60e5f01f12f19b2f21c2386471b"
 
 
 def main() -> int:

@@ -1,0 +1,1449 @@
+[
+  {
+    "id": 3565,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:21/tcp:ftp",
+        "source": "iot_defaults",
+        "affected": "Port 21 \u2014 ftp vsftpd 2.0.0",
+        "cpe": "cpe:2.3:a:redhat:vsftpd:2.0.0",
+        "version": "2.0.0",
+        "port": 21,
+        "service": "ftp",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:admin at path /login"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into ftp and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure ftp's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use ftp, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change ftp's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:445/tcp:smb",
+        "source": "network",
+        "affected": "Port 445 \u2014 smb Samba 2.0.0",
+        "cpe": "cpe:2.3:a:samba:samba:2.0.0",
+        "version": "2.0.0",
+        "port": 445,
+        "service": "smb",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review smb's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update smb to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 21 \u2014 ftp vsftpd 2.0.0",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3566,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:25/tcp:smtp",
+        "source": "network",
+        "affected": "Port 25 \u2014 smtp Exim 4.54",
+        "cpe": "cpe:2.3:a:exim:exim:4.54",
+        "version": "4.54",
+        "port": 25,
+        "service": "smtp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review smtp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update smtp to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:80/tcp:http",
+        "source": "iot_defaults",
+        "affected": "Port 80 \u2014 http D-Link router firmware 1.10nb04",
+        "cpe": "cpe:2.3:o:dlink:dir-816_firmware:1.10nb04",
+        "version": "1.10nb04",
+        "port": 80,
+        "service": "http",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "upnp-info",
+            "output": "Server: Linux/3.10 UPnP/1.0 MiniUPnPd/1.9 \u2014 external port mapping open"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3567,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:80/tcp:http",
+        "source": "network",
+        "affected": "Port 80 \u2014 http D-Link router firmware 101cnb04",
+        "cpe": "cpe:2.3:o:dlink:dir-816_firmware:101cnb04",
+        "version": "101cnb04",
+        "port": 80,
+        "service": "http",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "upnp-info",
+            "output": "Server: Linux/4.4 UPnP/1.0 MiniUPnPd/2.1 \u2014 external port mapping open, WAN access unrestricted"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3568,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:8080/tcp:http-proxy",
+        "source": "iot_defaults",
+        "affected": "Port 8080 \u2014 http-proxy Apache Tomcat 7.0.66",
+        "cpe": "cpe:2.3:a:apache:tomcat:7.0.66",
+        "version": "7.0.66",
+        "port": 8080,
+        "service": "http-proxy",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:1234 at path /cgi-bin/luci"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into http-proxy and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure http-proxy's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use http-proxy, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change http-proxy's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:2375/tcp:docker",
+        "source": "network",
+        "affected": "Port 2375 \u2014 docker Docker 17.12.0",
+        "cpe": "cpe:2.3:a:docker:docker:17.12.0",
+        "version": "17.12.0",
+        "port": 2375,
+        "service": "docker",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review docker's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update docker to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 8080 \u2014 http-proxy Apache Tomcat 7.0.66",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3569,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:1194/tcp:openvpn",
+        "source": "iot_defaults",
+        "affected": "Port 1194 \u2014 openvpn OpenVPN 1.4.1",
+        "cpe": "cpe:2.3:a:openvpn:openvpn:1.4.1",
+        "version": "1.4.1",
+        "port": 1194,
+        "service": "openvpn",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials root:root at path /admin/login.cgi"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into openvpn and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure openvpn's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use openvpn, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change openvpn's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:3306/tcp:mysql",
+        "source": "network",
+        "affected": "Port 3306 \u2014 mysql MySQL 5.0.36",
+        "cpe": "cpe:2.3:a:mysql:mysql:5.0.36",
+        "version": "5.0.36",
+        "port": 3306,
+        "service": "mysql",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review mysql's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update mysql to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 1194 \u2014 openvpn OpenVPN 1.4.1",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3570,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:80/tcp:http",
+        "source": "iot_defaults",
+        "affected": "Port 80 \u2014 http D-Link router firmware 101cnb04",
+        "cpe": "cpe:2.3:o:dlink:dir-816_firmware:101cnb04",
+        "version": "101cnb04",
+        "port": 80,
+        "service": "http",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:admin at path /login"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into http and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure http's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use http, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change http's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:2375/tcp:docker",
+        "source": "network",
+        "affected": "Port 2375 \u2014 docker Docker 18.03.0",
+        "cpe": "cpe:2.3:a:docker:docker:18.03.0",
+        "version": "18.03.0",
+        "port": 2375,
+        "service": "docker",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review docker's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update docker to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 80 \u2014 http D-Link router firmware 101cnb04",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3571,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:3306/tcp:mysql",
+        "source": "iot_defaults",
+        "affected": "Port 3306 \u2014 mysql MariaDB 5.1.60",
+        "cpe": "cpe:2.3:a:mariadb:mariadb:5.1.60",
+        "version": "5.1.60",
+        "port": 3306,
+        "service": "mysql",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:1234 at path /cgi-bin/luci"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into mysql and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure mysql's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use mysql, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change mysql's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:21/tcp:ftp",
+        "source": "network",
+        "affected": "Port 21 \u2014 ftp vsftpd 0.0.9",
+        "cpe": "cpe:2.3:a:redhat:vsftpd:0.0.9",
+        "version": "0.0.9",
+        "port": 21,
+        "service": "ftp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review ftp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update ftp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 3306 \u2014 mysql MariaDB 5.1.60",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3572,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:2375/tcp:docker",
+        "source": "iot_defaults",
+        "affected": "Port 2375 \u2014 docker Docker 18.03.1",
+        "cpe": "cpe:2.3:a:docker:docker:18.03.1",
+        "version": "18.03.1",
+        "port": 2375,
+        "service": "docker",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials root:root at path /admin/login.cgi"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into docker and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure docker's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use docker, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change docker's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:21/tcp:ftp",
+        "source": "network",
+        "affected": "Port 21 \u2014 ftp vsftpd 0.0.10",
+        "cpe": "cpe:2.3:a:redhat:vsftpd:0.0.10",
+        "version": "0.0.10",
+        "port": 21,
+        "service": "ftp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review ftp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update ftp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 2375 \u2014 docker Docker 18.03.1",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3573,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:25/tcp:smtp",
+        "source": "network",
+        "affected": "Port 25 \u2014 smtp Exim 4.41",
+        "cpe": "cpe:2.3:a:exim:exim:4.41",
+        "version": "4.41",
+        "port": 25,
+        "service": "smtp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review smtp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update smtp to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:80/tcp:http",
+        "source": "iot_defaults",
+        "affected": "Port 80 \u2014 http lighttpd 1.3.0",
+        "cpe": "cpe:2.3:a:lighttpd:lighttpd:1.3.0",
+        "version": "1.3.0",
+        "port": 80,
+        "service": "http",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "upnp-info",
+            "output": "Server: Linux/4.4 UPnP/1.0 MiniUPnPd/2.1 \u2014 external port mapping open, WAN access unrestricted"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3574,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:1194/tcp:openvpn",
+        "source": "iot_defaults",
+        "affected": "Port 1194 \u2014 openvpn OpenVPN 2.1.1",
+        "cpe": "cpe:2.3:a:openvpn:openvpn:2.1.1",
+        "version": "2.1.1",
+        "port": 1194,
+        "service": "openvpn",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:admin at path /login"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into openvpn and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure openvpn's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use openvpn, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change openvpn's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:3306/tcp:mysql",
+        "source": "network",
+        "affected": "Port 3306 \u2014 mysql MariaDB 5.1.44",
+        "cpe": "cpe:2.3:a:mariadb:mariadb:5.1.44",
+        "version": "5.1.44",
+        "port": 3306,
+        "service": "mysql",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review mysql's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update mysql to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 1194 \u2014 openvpn OpenVPN 2.1.1",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3575,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:445/tcp:smb",
+        "source": "network",
+        "affected": "Port 445 \u2014 smb Samba 2.0.0",
+        "cpe": "cpe:2.3:a:samba:samba:2.0.0",
+        "version": "2.0.0",
+        "port": 445,
+        "service": "smb",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review smb's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update smb to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:8080/tcp:http-proxy",
+        "source": "iot_defaults",
+        "affected": "Port 8080 \u2014 http-proxy Jetty 9.2.10",
+        "cpe": "cpe:2.3:a:eclipse:jetty:9.2.10",
+        "version": "9.2.10",
+        "port": 8080,
+        "service": "http-proxy",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "upnp-info",
+            "output": "Server: Linux/4.4 UPnP/1.0 MiniUPnPd/2.1 \u2014 external port mapping open, WAN access unrestricted"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http-proxy's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http-proxy to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3576,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:80/tcp:http",
+        "source": "iot_defaults",
+        "affected": "Port 80 \u2014 http QNAP QTS 4.4.1.1081",
+        "cpe": "cpe:2.3:o:qnap:qts:4.4.1.1081",
+        "version": "4.4.1.1081",
+        "port": 80,
+        "service": "http",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:admin at path /login"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into http and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure http's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use http, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change http's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:21/tcp:ftp",
+        "source": "network",
+        "affected": "Port 21 \u2014 ftp vsftpd 2.0.0",
+        "cpe": "cpe:2.3:a:redhat:vsftpd:2.0.0",
+        "version": "2.0.0",
+        "port": 21,
+        "service": "ftp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review ftp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update ftp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 80 \u2014 http QNAP QTS 4.4.1.1081",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3577,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:8080/tcp:http-proxy",
+        "source": "iot_defaults",
+        "affected": "Port 8080 \u2014 http-proxy Jetty 9.3.4",
+        "cpe": "cpe:2.3:a:eclipse:jetty:9.3.4",
+        "version": "9.3.4",
+        "port": 8080,
+        "service": "http-proxy",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials root:root at path /admin/login.cgi"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into http-proxy and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure http-proxy's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use http-proxy, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change http-proxy's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:8081/tcp:http-alt",
+        "source": "network",
+        "affected": "Port 8081 \u2014 http-alt Node.js 5.1.1",
+        "cpe": "cpe:2.3:a:nodejs:node.js:5.1.1",
+        "version": "5.1.1",
+        "port": 8081,
+        "service": "http-alt",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http-alt's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http-alt to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 8080 \u2014 http-proxy Jetty 9.3.4",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3578,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:8080/tcp:http-proxy",
+        "source": "iot_defaults",
+        "affected": "Port 8080 \u2014 http-proxy Apache Tomcat 7.0.30",
+        "cpe": "cpe:2.3:a:apache:tomcat:7.0.30",
+        "version": "7.0.30",
+        "port": 8080,
+        "service": "http-proxy",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials root:root at path /admin/login.cgi"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into http-proxy and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure http-proxy's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use http-proxy, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change http-proxy's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:1900/tcp:upnp",
+        "source": "network",
+        "affected": "Port 1900 \u2014 upnp MiniUPnPd 2.0",
+        "cpe": "cpe:2.3:a:miniupnp_project:miniupnpd:2.0",
+        "version": "2.0",
+        "port": 1900,
+        "service": "upnp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review upnp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update upnp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 8080 \u2014 http-proxy Apache Tomcat 7.0.30",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3579,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:8081/tcp:http-alt",
+        "source": "network",
+        "affected": "Port 8081 \u2014 http-alt Node.js 6.3.1",
+        "cpe": "cpe:2.3:a:nodejs:node.js:6.3.1",
+        "version": "6.3.1",
+        "port": 8081,
+        "service": "http-alt",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http-alt's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http-alt to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:21/tcp:ftp",
+        "source": "iot_defaults",
+        "affected": "Port 21 \u2014 ftp ProFTPD 1.2.1",
+        "cpe": "cpe:2.3:a:proftpd:proftpd:1.2.1",
+        "version": "1.2.1",
+        "port": 21,
+        "service": "ftp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "snmp-info",
+            "output": "SNMP community string 'private' accepted (read-write access)"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review ftp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update ftp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3580,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:5984/tcp:couchdb",
+        "source": "network",
+        "affected": "Port 5984 \u2014 couchdb Apache CouchDB 0.9.0",
+        "cpe": "cpe:2.3:a:apache:couchdb:0.9.0",
+        "version": "0.9.0",
+        "port": 5984,
+        "service": "couchdb",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review couchdb's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update couchdb to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:6379/tcp:redis",
+        "source": "iot_defaults",
+        "affected": "Port 6379 \u2014 redis Redis 7.0",
+        "cpe": "cpe:2.3:a:redis:redis:7.0",
+        "version": "7.0",
+        "port": 6379,
+        "service": "redis",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "upnp-info",
+            "output": "Server: Linux/3.10 UPnP/1.0 MiniUPnPd/1.9 \u2014 external port mapping open"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review redis's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update redis to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3581,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:21/tcp:ftp",
+        "source": "network",
+        "affected": "Port 21 \u2014 ftp ProFTPD 1.2.6",
+        "cpe": "cpe:2.3:a:proftpd:proftpd:1.2.6",
+        "version": "1.2.6",
+        "port": 21,
+        "service": "ftp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review ftp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update ftp to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:25/tcp:smtp",
+        "source": "iot_defaults",
+        "affected": "Port 25 \u2014 smtp Exim 4.03",
+        "cpe": "cpe:2.3:a:exim:exim:4.03",
+        "version": "4.03",
+        "port": 25,
+        "service": "smtp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "snmp-info",
+            "output": "SNMP community string 'public' accepted (read access)"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review smtp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update smtp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3582,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:143/tcp:imap",
+        "source": "iot_defaults",
+        "affected": "Port 143 \u2014 imap Dovecot 1.1.5",
+        "cpe": "cpe:2.3:a:dovecot:dovecot:1.1.5",
+        "version": "1.1.5",
+        "port": 143,
+        "service": "imap",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:1234 at path /cgi-bin/luci"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into imap and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure imap's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use imap, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change imap's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:1900/tcp:upnp",
+        "source": "network",
+        "affected": "Port 1900 \u2014 upnp MiniUPnPd 1.0",
+        "cpe": "cpe:2.3:a:miniupnp_project:miniupnpd:1.0",
+        "version": "1.0",
+        "port": 1900,
+        "service": "upnp",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review upnp's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update upnp to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 143 \u2014 imap Dovecot 1.1.5",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3583,
+    "ordered_facts": [
+      {
+        "ref": 0,
+        "finding_key": "net:8081/tcp:http-alt",
+        "source": "network",
+        "affected": "Port 8081 \u2014 http-alt Node.js 5.1.1",
+        "cpe": "cpe:2.3:a:nodejs:node.js:5.1.1",
+        "version": "5.1.1",
+        "port": 8081,
+        "service": "http-alt",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http-alt's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http-alt to close a known security weakness."
+        }
+      },
+      {
+        "ref": 1,
+        "finding_key": "net:3306/tcp:mysql",
+        "source": "iot_defaults",
+        "affected": "Port 3306 \u2014 mysql MariaDB 10.0.14",
+        "cpe": "cpe:2.3:a:mariadb:mariadb:10.0.14",
+        "version": "10.0.14",
+        "port": 3306,
+        "service": "mysql",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "upnp-info",
+            "output": "Server: Linux/3.10 UPnP/1.0 MiniUPnPd/1.9 \u2014 external port mapping open"
+          }
+        ],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review mysql's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update mysql to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "low",
+      "summary": "",
+      "findings": [],
+      "good_news": [
+        "",
+        ""
+      ]
+    }
+  },
+  {
+    "id": 3584,
+    "ordered_facts": [
+      {
+        "ref": 1,
+        "finding_key": "net:80/tcp:http",
+        "source": "iot_defaults",
+        "affected": "Port 80 \u2014 http TP-Link router firmware 1.4.2",
+        "cpe": "cpe:2.3:o:tp-link:tapo_c200_firmware:1.4.2",
+        "version": "1.4.2",
+        "port": 80,
+        "service": "http",
+        "cvss": 0.0,
+        "severity": "critical",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [
+          {
+            "id": "http-default-accounts",
+            "output": "Found default credentials admin:admin at path /login"
+          }
+        ],
+        "fix_facts": {
+          "class": "default_creds",
+          "steps": [
+            "Log into http and change the default username/password immediately \u2014 use a strong password you don't use anywhere else.",
+            "Make sure http's login page isn't reachable from the open internet \u2014 restrict it to your home network only.",
+            "If you don't recognize or use http, consider taking it offline."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Change http's default login immediately."
+        }
+      },
+      {
+        "ref": 0,
+        "finding_key": "net:8080/tcp:http-proxy",
+        "source": "network",
+        "affected": "Port 8080 \u2014 http-proxy Jetty 9.3.4",
+        "cpe": "cpe:2.3:a:eclipse:jetty:9.3.4",
+        "version": "9.3.4",
+        "port": 8080,
+        "service": "http-proxy",
+        "cvss": 0.0,
+        "severity": "low",
+        "cve_ids": [],
+        "description": "",
+        "remediation_refs": [],
+        "script_findings": [],
+        "fix_facts": {
+          "class": "cve_other",
+          "steps": [
+            "Review http-proxy's settings to make sure it's configured securely."
+          ],
+          "provenance": "verified:citation",
+          "fix_summary": "Update http-proxy to close a known security weakness."
+        }
+      }
+    ],
+    "skeleton": {
+      "overall_risk": "critical",
+      "summary": "",
+      "findings": [
+        {
+          "title": "",
+          "severity": "critical",
+          "what_it_means": "",
+          "why_it_matters": "",
+          "how_to_fix": "",
+          "affected": "Port 80 \u2014 http TP-Link router firmware 1.4.2",
+          "references": []
+        }
+      ],
+      "good_news": [
+        ""
+      ]
+    }
+  }
+]

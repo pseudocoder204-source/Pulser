@@ -1,0 +1,349 @@
+[
+  {
+    "id": 3565,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your FTP server is still using the password it shipped with, which means anyone who finds it can log straight in without knowing anything about you or your network. Everything else checked in this scan came back clean.",
+      "findings": [
+        {
+          "title": "Your FTP server still has its factory password",
+          "severity": "critical",
+          "what_it_means": "The FTP file-sharing service running on your network never had its original username and password (admin/admin) changed. That's the same login every device of this type ships with out of the box.",
+          "why_it_matters": "Because this password is public knowledge, anyone who stumbles across this device — including automated tools that scan the internet for exactly this — can log in immediately and get at whatever files it holds.",
+          "how_to_fix": "1. Log into ftp and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure ftp's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use ftp, consider taking it offline.",
+          "affected": "Port 21 — ftp vsftpd 2.0.0",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The file-sharing service on port 445 didn't turn up any known problems during this scan."
+      ]
+    }
+  },
+  {
+    "id": 3566,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Nothing concerning was found on your network this time — both items checked came back clean.",
+      "findings": [],
+      "good_news": [
+        "Your outgoing mail service (port 25) showed no known issues.",
+        "Your router's web interface responded normally, and no vulnerabilities were flagged for it."
+      ]
+    }
+  },
+  {
+    "id": 3567,
+    "label": {
+      "overall_risk": "low",
+      "summary": "The one item checked in this scan — your router's web login — came back clean.",
+      "findings": [],
+      "good_news": [
+        "Your router's admin web page was checked and no known security problems were found."
+      ]
+    }
+  },
+  {
+    "id": 3568,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "A web application server on your network is still logging in with its out-of-the-box password, which is an easy target — this needs fixing now. The other service checked out fine.",
+      "findings": [
+        {
+          "title": "Web application server logging in with a default password",
+          "severity": "critical",
+          "what_it_means": "A web server (Apache Tomcat) on port 8080 is still set up with its original default login (admin/1234) rather than a password you chose yourself.",
+          "why_it_matters": "Default logins like this one are published in setup guides and known to attackers, so anyone who finds this server can walk right in and take it over without needing to guess anything.",
+          "how_to_fix": "1. Log into http-proxy and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure http-proxy's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use http-proxy, consider taking it offline.",
+          "affected": "Port 8080 — http-proxy Apache Tomcat 7.0.66",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The Docker service on port 2375 didn't show any known vulnerabilities in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3569,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your VPN service is still using the manufacturer's default login instead of a password of your own, so it needs attention right away. The database service nearby checked out fine.",
+      "findings": [
+        {
+          "title": "VPN service still uses its factory login",
+          "severity": "critical",
+          "what_it_means": "The OpenVPN service on port 1194 is still reachable using the default account (root/root) it came with, rather than credentials you set yourself.",
+          "why_it_matters": "A VPN is meant to be a secure gateway into your network — if its login is still the factory default, anyone who finds it can use that same door to get into everything behind it.",
+          "how_to_fix": "1. Log into openvpn and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure openvpn's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use openvpn, consider taking it offline.",
+          "affected": "Port 1194 — openvpn OpenVPN 1.4.1",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "Your MySQL database on port 3306 showed nothing concerning in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3570,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your router's web login is still set to the password it came with in the box — that's a quick way in for anyone who finds it, so it should be changed right away. The other service checked came back clean.",
+      "findings": [
+        {
+          "title": "Router web login still set to factory default",
+          "severity": "critical",
+          "what_it_means": "The web management page for your router (port 80) is still using the built-in default login (admin/admin) instead of a password you picked.",
+          "why_it_matters": "Router admin pages control your whole home network, and a default password on one is one of the very first things an attacker — or an automated scanning tool — will try.",
+          "how_to_fix": "1. Log into http and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure http's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use http, consider taking it offline.",
+          "affected": "Port 80 — http D-Link router firmware 101cnb04",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The Docker service on port 2375 didn't raise any known concerns."
+      ]
+    }
+  },
+  {
+    "id": 3571,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "A database on your network can be accessed using its original factory login, which is worth fixing immediately since it's an easy target. The other service found nearby is fine.",
+      "findings": [
+        {
+          "title": "Database still using its out-of-the-box login",
+          "severity": "critical",
+          "what_it_means": "Your MariaDB database (port 3306) can still be logged into with the default account (admin/1234) it shipped with, rather than a password unique to you.",
+          "why_it_matters": "A database often holds the most sensitive information on a network, and a well-known default login means anyone who reaches it can read or change that data without any real effort.",
+          "how_to_fix": "1. Log into mysql and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure mysql's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use mysql, consider taking it offline.",
+          "affected": "Port 3306 — mysql MariaDB 5.1.60",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "Your FTP service on port 21 didn't show any known issues in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3572,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "A container management service on your network is wide open because it's still using its default login — this should be fixed right away. The FTP service nearby is fine.",
+      "findings": [
+        {
+          "title": "Docker management service left on its default login",
+          "severity": "critical",
+          "what_it_means": "The Docker service on port 2375 is still reachable using its built-in default account (root/root) instead of a login you set up.",
+          "why_it_matters": "Docker's management interface can be used to start or control programs on this machine, so a default login here can hand an attacker much more than just this one service — potentially the whole device.",
+          "how_to_fix": "1. Log into docker and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure docker's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use docker, consider taking it offline.",
+          "affected": "Port 2375 — docker Docker 18.03.1",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The FTP service on port 21 checked out fine, with no known issues found."
+      ]
+    }
+  },
+  {
+    "id": 3573,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Both items looked at in this scan came back without any known issues.",
+      "findings": [],
+      "good_news": [
+        "Your outgoing mail service (port 25) showed nothing concerning.",
+        "Your router's web page on port 80 responded normally with no known vulnerabilities flagged."
+      ]
+    }
+  },
+  {
+    "id": 3574,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your VPN's login is still set to the default it came with, which needs to be changed right away. The database service found alongside it is fine.",
+      "findings": [
+        {
+          "title": "VPN login left at its factory setting",
+          "severity": "critical",
+          "what_it_means": "The OpenVPN service on port 1194 can still be accessed with its default account (admin/admin) rather than a password you set.",
+          "why_it_matters": "Since a VPN is normally the front door to your whole home network, leaving its login at the factory default means anyone who finds it can walk straight through that door.",
+          "how_to_fix": "1. Log into openvpn and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure openvpn's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use openvpn, consider taking it offline.",
+          "affected": "Port 1194 — openvpn OpenVPN 2.1.1",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "Your MariaDB database on port 3306 didn't show any known problems in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3575,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Both services reviewed in this scan came back without any known issues.",
+      "findings": [],
+      "good_news": [
+        "The file-sharing service on port 445 showed no known vulnerabilities.",
+        "The web application service on port 8080 checked out fine."
+      ]
+    }
+  },
+  {
+    "id": 3576,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your network storage device's web login is still the one it shipped with — that's an easy way in and should be changed as soon as possible. The FTP service nearby is fine.",
+      "findings": [
+        {
+          "title": "Network storage login still set to factory default",
+          "severity": "critical",
+          "what_it_means": "The web login for your QNAP network storage device (port 80) is still using its out-of-the-box account (admin/admin) instead of a password you chose.",
+          "why_it_matters": "Network storage devices often hold photos, backups, and other personal files, and a default login means anyone who finds this device on the network can access all of it without a fight.",
+          "how_to_fix": "1. Log into http and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure http's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use http, consider taking it offline.",
+          "affected": "Port 80 — http QNAP QTS 4.4.1.1081",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The FTP service on port 21 didn't turn up any known issues."
+      ]
+    }
+  },
+  {
+    "id": 3577,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "A web application service on your network is reachable using its factory-set login, which needs fixing right away. The other service nearby is fine.",
+      "findings": [
+        {
+          "title": "Web application server left on its default login",
+          "severity": "critical",
+          "what_it_means": "A Jetty web application server on port 8080 is still accepting its built-in default login (root/root) rather than a password unique to your setup.",
+          "why_it_matters": "A default login on a web application server is one of the first things attackers try, since it requires no guessing at all — it hands over full access immediately.",
+          "how_to_fix": "1. Log into http-proxy and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure http-proxy's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use http-proxy, consider taking it offline.",
+          "affected": "Port 8080 — http-proxy Jetty 9.3.4",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The service on port 8081 didn't show any known issues in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3578,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "A web server on your network is still reachable with its out-of-the-box login, and that needs to change right away. The other item checked is fine.",
+      "findings": [
+        {
+          "title": "Web server still logging in with its default password",
+          "severity": "critical",
+          "what_it_means": "An Apache Tomcat server on port 8080 can still be logged into using its factory account (root/root) instead of a password you set yourself.",
+          "why_it_matters": "Well-known default logins like this one are actively searched for by scanning tools across the internet, making this an easy and common way for someone to get in.",
+          "how_to_fix": "1. Log into http-proxy and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure http-proxy's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use http-proxy, consider taking it offline.",
+          "affected": "Port 8080 — http-proxy Apache Tomcat 7.0.30",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The UPnP service on port 1900 showed no known problems."
+      ]
+    }
+  },
+  {
+    "id": 3579,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Both items reviewed in this scan came back without any known security issues.",
+      "findings": [],
+      "good_news": [
+        "The service on port 8081 checked out fine, with nothing concerning found.",
+        "Your FTP service on port 21 showed no known vulnerabilities."
+      ]
+    }
+  },
+  {
+    "id": 3580,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Neither item found in this scan showed any known security problems.",
+      "findings": [],
+      "good_news": [
+        "Your CouchDB database on port 5984 didn't show any known issues.",
+        "Your Redis service on port 6379 checked out fine in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3581,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Both services looked at in this scan came back clean, with nothing that needs attention right now.",
+      "findings": [],
+      "good_news": [
+        "Your FTP service on port 21 showed no known vulnerabilities.",
+        "Your outgoing mail service on port 25 didn't turn up any known problems."
+      ]
+    }
+  },
+  {
+    "id": 3582,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your email service is still using the password it came with, which is an easy way in and should be changed right away. The other item nearby is fine.",
+      "findings": [
+        {
+          "title": "Email service still using its factory login",
+          "severity": "critical",
+          "what_it_means": "The IMAP email service on port 143 can still be logged into using its built-in default account (admin/1234) rather than a password you set.",
+          "why_it_matters": "Email access can expose a lot of personal information and is often used as a stepping stone to reset passwords elsewhere, so a default login here is a serious risk.",
+          "how_to_fix": "1. Log into imap and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure imap's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use imap, consider taking it offline.",
+          "affected": "Port 143 — imap Dovecot 1.1.5",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The UPnP service on port 1900 didn't show any known issues."
+      ]
+    }
+  },
+  {
+    "id": 3583,
+    "label": {
+      "overall_risk": "low",
+      "summary": "Both items reviewed in this scan came back without any known security concerns.",
+      "findings": [],
+      "good_news": [
+        "The service on port 8081 showed no known vulnerabilities.",
+        "Your MariaDB database on port 3306 checked out fine in this scan."
+      ]
+    }
+  },
+  {
+    "id": 3584,
+    "label": {
+      "overall_risk": "critical",
+      "summary": "Your router's web login is still the one it shipped with, which is an easy target and should be changed right away. The web application service nearby is fine.",
+      "findings": [
+        {
+          "title": "Router web login still at its factory setting",
+          "severity": "critical",
+          "what_it_means": "The web management page for your TP-Link router (port 80) is still using its default login (admin/admin) instead of a password of your own.",
+          "why_it_matters": "Router logins control access to your whole home network, and a default password here is one of the very first things an attacker will try.",
+          "how_to_fix": "1. Log into http and change the default username/password immediately — use a strong password you don't use anywhere else.\n2. Make sure http's login page isn't reachable from the open internet — restrict it to your home network only.\n3. If you don't recognize or use http, consider taking it offline.",
+          "affected": "Port 80 — http TP-Link router firmware 1.4.2",
+          "references": []
+        }
+      ],
+      "good_news": [
+        "The web application service on port 8080 didn't show any known issues."
+      ]
+    }
+  }
+]

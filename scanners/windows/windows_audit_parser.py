@@ -32,90 +32,141 @@ import sys
 from typing import Any, Dict, List, Optional
 
 from ..bin_resolver import is_elevated, resolve as _resolve_bin
+from .windows_audit_generated import GENERATED_WINDOWS_AUDIT_SOLUTIONS
 
 # Default hard timeout (seconds) for the PowerShell audit subprocess. Every worker must
 # fail bounded, not hang — same rationale as the other parsers' timeouts.
 DEFAULT_AUDIT_TIMEOUT = 120
 
 # ── Windows audit catalog ──────────────────────────────────────────────────────
-# test_id → {category, description, solution}. Same role as LYNIS_TEST_CATALOG: the
-# machine-readable check facts carry no human text, so the build stage fills it in here.
+# test_id → {category, description, solution, provenance, citations}. Same role as
+# LYNIS_TEST_CATALOG: the machine-readable check facts carry no human text, so the
+# build stage fills it in here.
+#
+# PROVENANCE: every solution below was verified against Microsoft's own documentation
+# in a citation-grounding pass on 2026-07-18 (same pass as core/remediation.py's
+# REMEDIATION_CATALOG — UpgradeTuning.txt Step 2). `citations` lists the Microsoft
+# Learn / Microsoft Support URLs each solution's settings path, cmdlet, or registry
+# key was checked against; `provenance` is "verified:citation" throughout. The build
+# stage does not emit these two keys into findings — they are catalog metadata.
 
-WINDOWS_AUDIT_CATALOG: Dict[str, Dict[str, str]] = {
+# Citation sources, named once and shared across entries:
+_MS_DEFENDER_VTP = "https://support.microsoft.com/en-us/windows/virus-and-threat-protection-in-the-windows-security-app-1362f4cd-d71a-b52a-0b66-c2820032b65e"
+_MS_FIREWALL_CMDLET = "https://learn.microsoft.com/en-us/powershell/module/netsecurity/set-netfirewallprofile"
+_MS_FIREWALL_OVERVIEW = "https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/"
+_MS_SMB1 = "https://learn.microsoft.com/en-us/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3"
+_MS_RDP_ALLOW = "https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/remotepc/remote-desktop-allow-access"
+_MS_RDP_NLA_CSP = "https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-remotedesktopservices"
+_MS_UAC_REGISTRY = "https://learn.microsoft.com/en-us/windows/security/identity-protection/user-account-control/user-account-control-group-policy-and-registry-key-settings"
+_MS_DEVICE_ENCRYPTION = "https://support.microsoft.com/en-us/windows/device-encryption-in-windows-cf7e2b6f-3e70-4882-9532-18633605b7df"
+_MS_WU_SETTINGS = "https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings"
+_MS_WU_INSTALL = "https://support.microsoft.com/en-us/windows/deployment/updates-lifecycle/install-windows-updates"
+_MS_LOCAL_ACCOUNTS = "https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/local-accounts"
+_MS_EXEC_POLICY = "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies"
+
+WINDOWS_AUDIT_CATALOG: Dict[str, Dict[str, Any]] = {
     "DEFENDER-RTP": {
         "category":    "Malware Protection",
         "description": "Microsoft Defender real-time protection is turned off",
         "solution":    "Turn real-time protection back on: Windows Security > Virus & threat "
                        "protection > Manage settings > Real-time protection = On.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_DEFENDER_VTP],
     },
     "FIREWALL-DOMAIN": {
         "category":    "Firewall",
         "description": "Windows Firewall is disabled for the Domain network profile",
         "solution":    "Enable it: Windows Security > Firewall & network protection > Domain "
                        "network > turn the firewall On (or 'Set-NetFirewallProfile -Name Domain -Enabled True').",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_FIREWALL_CMDLET, _MS_FIREWALL_OVERVIEW],
     },
     "FIREWALL-PRIVATE": {
         "category":    "Firewall",
         "description": "Windows Firewall is disabled for the Private network profile",
         "solution":    "Enable it: Windows Security > Firewall & network protection > Private "
                        "network > turn the firewall On (or 'Set-NetFirewallProfile -Name Private -Enabled True').",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_FIREWALL_CMDLET, _MS_FIREWALL_OVERVIEW],
     },
     "FIREWALL-PUBLIC": {
         "category":    "Firewall",
         "description": "Windows Firewall is disabled for the Public network profile",
         "solution":    "Enable it: Windows Security > Firewall & network protection > Public "
                        "network > turn the firewall On (or 'Set-NetFirewallProfile -Name Public -Enabled True').",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_FIREWALL_CMDLET, _MS_FIREWALL_OVERVIEW],
     },
     "SMB1-ENABLED": {
         "category":    "Legacy Protocols",
         "description": "The legacy SMBv1 file-sharing protocol is enabled (EternalBlue/WannaCry-class exposure)",
         "solution":    "Disable SMBv1: 'Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol' "
-                       "or 'Set-SmbServerConfiguration -EnableSMB1Protocol $false'; reboot.",
+                       "or 'Set-SmbServerConfiguration -EnableSMB1Protocol $false'; reboot if prompted "
+                       "(the Set-SmbServerConfiguration route takes effect without one).",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_SMB1],
     },
     "RDP-ENABLED": {
         "category":    "Remote Access",
         "description": "Remote Desktop (RDP) is enabled and accepting connections",
         "solution":    "If you don't use Remote Desktop, disable it: Settings > System > Remote "
                        "Desktop = Off. If you do, restrict it to a VPN and enable Network Level Authentication.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_RDP_ALLOW],
     },
     "RDP-NLA": {
         "category":    "Remote Access",
         "description": "Remote Desktop is enabled without Network Level Authentication (NLA)",
         "solution":    "Require NLA: System Properties > Remote > 'Allow connections only from computers "
                        "running Remote Desktop with Network Level Authentication'.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_RDP_ALLOW, _MS_RDP_NLA_CSP],
     },
     "UAC-DISABLED": {
         "category":    "Privilege Control",
         "description": "User Account Control (UAC) is disabled — programs can gain admin rights without a prompt",
         "solution":    "Re-enable UAC: set registry EnableLUA=1 under "
                        "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System, then reboot.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_UAC_REGISTRY],
     },
     "BITLOCKER-OFF": {
         "category":    "Disk Encryption",
         "description": "The system drive is not protected by BitLocker/device encryption",
         "solution":    "Turn on device encryption or BitLocker: Settings > Privacy & security > "
                        "Device encryption, or Control Panel > BitLocker Drive Encryption.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_DEVICE_ENCRYPTION],
     },
     "WU-AUTOUPDATE": {
         "category":    "Patch Management",
         "description": "Windows Update automatic updates are turned off",
         "solution":    "Re-enable automatic updates: Settings > Windows Update > Advanced options, "
                        "and ensure the Windows Update service is set to run automatically.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_WU_SETTINGS],
     },
     "WU-STALE": {
         "category":    "Patch Management",
         "description": "No Windows update has been installed recently — the system may be missing security patches",
         "solution":    "Open Settings > Windows Update and install all pending updates now.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_WU_INSTALL],
     },
     "GUEST-ENABLED": {
         "category":    "Accounts",
         "description": "The built-in Guest account is enabled",
         "solution":    "Disable the Guest account: 'Disable-LocalUser -Name Guest'.",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_LOCAL_ACCOUNTS],
     },
     "PS-EXECPOLICY": {
         "category":    "Scripting",
         "description": "PowerShell execution policy is unrestricted — scripts run without any signing check",
-        "solution":    "Tighten it: 'Set-ExecutionPolicy RemoteSigned -Scope LocalMachine'.",
+        "solution":    "Tighten it: 'Set-ExecutionPolicy RemoteSigned -Scope LocalMachine' "
+                       "(run from an elevated PowerShell).",
+        "provenance":  "verified:citation",
+        "citations":   [_MS_EXEC_POLICY],
     },
 }
 
@@ -214,6 +265,40 @@ def parse_windows_audit(raw_json: str) -> Dict[str, Any]:
 
 # ── STAGE 3: evaluate facts → findings ─────────────────────────────────────────
 
+# This scanner only ever runs on Windows, so there's no cross-platform preference
+# list to pick from (unlike core/remediation.py's _PLATFORM_KEY_PREFERENCE) -- just
+# try the native cmdlet form before the package-manager form.
+_WINDOWS_COMMAND_KEY_PREFERENCE = ("windows_powershell", "windows_winget")
+
+
+def _select_windows_command(commands_template: Dict[str, str]) -> str:
+    for key in _WINDOWS_COMMAND_KEY_PREFERENCE:
+        if key in commands_template:
+            return commands_template[key]
+    return ""
+
+
+def _render_solution(test_id: str) -> str:
+    """Renders the flat `solution` string `_finding()` puts on a finding.
+    GENERATED_WINDOWS_AUDIT_SOLUTIONS (windows_audit_generated.py, auto-generated by
+    finetune/rag_export.py -- see notes/RemediationRAGPlan.txt "Pipeline shape" step
+    5) supplies a per-step prose + command breakdown for test_ids the offline RAG
+    pipeline has drafted+reviewed+AST-validated; a test_id with no generated entry
+    falls back to WINDOWS_AUDIT_CATALOG's own hand-authored `solution` string."""
+    generated = GENERATED_WINDOWS_AUDIT_SOLUTIONS.get(test_id)
+    if generated is None:
+        return WINDOWS_AUDIT_CATALOG.get(test_id, {}).get("solution", "")
+    lines = []
+    for step in generated.get("steps", []):
+        if isinstance(step, dict):
+            text = step.get("text", "")
+            command = _select_windows_command(step.get("commands_template") or {})
+            lines.append(f"{text}\n    $ {command}" if command else text)
+        else:
+            lines.append(step)
+    return " ".join(lines)
+
+
 def _finding(test_id: str, severity: str, extra: str = "") -> Dict[str, str]:
     meta = WINDOWS_AUDIT_CATALOG.get(test_id, {})
     desc = meta.get("description", test_id)
@@ -223,7 +308,7 @@ def _finding(test_id: str, severity: str, extra: str = "") -> Dict[str, str]:
         "test_id":     test_id,
         "severity":    severity,
         "description": desc,
-        "solution":    meta.get("solution", ""),
+        "solution":    _render_solution(test_id),
     }
 
 

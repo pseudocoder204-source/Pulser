@@ -78,6 +78,22 @@ BAND_WATCH = "WATCH"
 _BAND_FIX_NOW_THRESHOLD = 70
 _BAND_SOON_THRESHOLD = 40
 
+# overall_risk_tier's own severity-tier ranking. Duplicated rather than imported from
+# agent.py (which already has an identical _TIER_RANK) to avoid a circular import —
+# agent.py imports this module, not the other way around.
+_SEVERITY_RANK = {"critical": 3, "high": 2, "medium": 1, "low": 0}
+_RANK_SEVERITY = {v: k for k, v in _SEVERITY_RANK.items()}
+
+# "Enough highs stack up to critical exposure" even with no single CVSS >= 9 — e.g.
+# three independently-exploitable high-severity services on one host is a worse
+# situation than the plain per-finding ceiling admits.
+_HIGH_COUNT_ESCALATION_THRESHOLD = 3
+
+# EPSS percentile above which a CVE is "very likely to be exploited soon" even if it
+# isn't (yet) on CISA's KEV list — KEV is necessarily a lagging list of *confirmed*
+# exploitation, EPSS is the leading-indicator complement to it.
+_EPSS_ESCALATION_PERCENTILE = 0.90
+
 _PORT_FINDING_KEY_RE = re.compile(r"^net:(\d+)/")
 
 
@@ -182,9 +198,13 @@ def _fixability_term(finding: Dict[str, Any]) -> float:
 
 # ── Hard escalations (Phase 5a) ────────────────────────────────────────────────
 
-def _has_default_creds_finding(finding: Dict[str, Any]) -> bool:
-    if finding.get("source") != "iot_defaults":
-        return False
+def has_default_creds_finding(finding: Dict[str, Any]) -> bool:
+    # No source-label check here on purpose: script_findings only ever gets populated
+    # from the iot_defaults NSE scripts in the first place, but agent.py's port-dedup
+    # can leave a merged row's "source" as "network" even after iot_defaults' own
+    # script_findings were merged into it (whichever scan hit the port first keeps the
+    # source label) — gating on source would silently miss default-creds hits on any
+    # port the plain network scan also happened to discover.
     for script in finding.get("script_findings") or []:
         script_id = str(script.get("id", ""))
         output = str(script.get("output", "")).strip()
@@ -206,7 +226,7 @@ def _escalations(finding: Dict[str, Any], drift: Optional[Dict[str, Dict[str, An
         if rec.get("kev"):
             reasons.append("CVE in CISA KEV on a reachable service")
 
-    if _has_default_creds_finding(finding):
+    if has_default_creds_finding(finding):
         reasons.append("factory-default credentials exposed")
 
     drift_rec = (drift or {}).get(finding.get("finding_key"))
@@ -214,6 +234,62 @@ def _escalations(finding: Dict[str, Any], drift: Optional[Dict[str, Dict[str, An
         reasons.append("reappeared 2+ times — a fix keeps being undone")
 
     return reasons
+
+
+def _exploit_escalated(finding: Dict[str, Any], db_path: str) -> bool:
+    """True if this finding's own CVEs are CISA KEV-listed or carry a high EPSS
+    percentile — the same two signals `_exploitability_term`/`_escalations` use,
+    looked up fresh here since `overall_risk_tier` is called on stored/replayed
+    findings that may not have an `intel` map already built for them. Scoped to
+    network-reachable sources (mirrors `_escalations`' KEV rule) and best-effort:
+    a missing/unsynced cache must never break report generation, only skip this
+    one signal."""
+    if finding.get("source") not in _REACHABLE_SOURCES:
+        return False
+    try:
+        intel = get_intel_for_cves(finding.get("cve_ids"), db_path)
+    except Exception:
+        return False
+    return bool(intel.get("kev")) or (intel.get("epss_percentile") or 0.0) >= _EPSS_ESCALATION_PERCENTILE
+
+
+def overall_risk_tier(findings: List[Dict[str, Any]], db_path: str = "vulnerability_cache.db") -> str:
+    """The headline severity tier for a set of findings — the worst per-finding
+    severity present, escalated to 'critical' when the raw CVSS ceiling alone would
+    understate real-world risk: active malware, factory-default credentials exposed,
+    a KEV-listed or high-EPSS CVE on a reachable finding, or enough 'high' findings
+    stacked up to add up to critical exposure. Mirrors the same signals `_escalations`
+    uses to force the FIX NOW triage band, so a finding that would demand immediate
+    action in triage doesn't get quietly summarized as merely 'high' in the
+    plain-English overall_risk headline shown to the user.
+
+    Takes plain finding dicts (as stored in `ordered_facts`/the findings table) —
+    no `drift`/`intel` map required — so it works equally from a live run's table
+    or a training-set row replayed from trainset.db."""
+    worst = 0
+    high_or_above = 0
+    escalate = False
+
+    for f in findings:
+        tier = f.get("severity", "low")
+        rank = _SEVERITY_RANK.get(tier, 0)
+        worst = max(worst, rank)
+        if rank >= _SEVERITY_RANK["high"]:
+            high_or_above += 1
+
+        if tier in ("critical", "high") and f.get("source") == "malware":
+            escalate = True
+        elif has_default_creds_finding(f):
+            escalate = True
+        elif _exploit_escalated(f, db_path):
+            escalate = True
+
+    if high_or_above >= _HIGH_COUNT_ESCALATION_THRESHOLD:
+        escalate = True
+
+    if escalate:
+        worst = max(worst, _SEVERITY_RANK["critical"])
+    return _RANK_SEVERITY[worst]
 
 
 # ── Public API ──────────────────────────────────────────────────────────────────
